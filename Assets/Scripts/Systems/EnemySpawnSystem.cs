@@ -6,8 +6,8 @@ public class EnemySpawnSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _testEnemyPrefab;
+    [SerializeField] private Transform _enemiesParent;
     
-
     private void Start()
     {
         StartCoroutine(SpawnEnemies());
@@ -17,7 +17,7 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            var enemy = Instantiate(_testEnemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            var enemy = Instantiate(_testEnemyPrefab, GetRandomSpawnPosition(), Quaternion.identity, _enemiesParent);
             var navMeshAgent = enemy.GetComponent<NavMeshAgent>();
             navMeshAgent.SetDestination(_player.transform.position);
             yield return new WaitForSeconds(1f);

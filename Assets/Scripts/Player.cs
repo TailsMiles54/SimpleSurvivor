@@ -1,4 +1,4 @@
-using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,5 +21,11 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.name);
+    }
+
+    [Button("PickUp")]
+    private void PickUp()
+    {
+        GetComponent<Animator>().SetTrigger("PickUpTrigger");
     }
 }
