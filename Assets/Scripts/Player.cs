@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -7,6 +8,13 @@ public class Player : MonoBehaviour
     
     [SerializeField] private int _speed = 1;
     [SerializeField] private int _speed_rotation = 3;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Rigidbody _rigidbody;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -15,6 +23,8 @@ public class Player : MonoBehaviour
         
         float curSpeed = _speed * Input.GetAxis("Vertical") * (Input.GetKey(KeyCode.LeftShift) ? 3 : 1);
 
+        _animator.SetFloat("CurrentSpeed", curSpeed);
+        Debug.Log(curSpeed);
         _characterController.SimpleMove(forward * curSpeed);
     }
 
@@ -23,9 +33,33 @@ public class Player : MonoBehaviour
         Debug.Log(other.gameObject.name);
     }
 
-    [Button("PickUp")]
+    [Button("PickUp"), HorizontalGroup("Animations")]
     private void PickUp()
     {
-        GetComponent<Animator>().SetTrigger("PickUpTrigger");
+        _animator.SetTrigger("PickUpTrigger");
+    }
+
+    [Button("Interact"), HorizontalGroup("Animations")]
+    private void Interact()
+    {
+        _animator.SetTrigger("InteractTrigger");
+    }
+
+    [Button("Die"), HorizontalGroup("Animations")]
+    private void Die()
+    {
+        _animator.SetTrigger("DieTrigger");
+    }
+
+    [Button("DieRecovery"), HorizontalGroup("Animations")]
+    private void DieRecovery()
+    {
+        _animator.SetTrigger("DieRecoveryTrigger");
+    }
+
+    [Button("Win"), HorizontalGroup("Animations")]
+    private void Win()
+    {
+        _animator.SetTrigger("WinTrigger");
     }
 }
