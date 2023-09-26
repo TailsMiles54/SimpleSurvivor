@@ -680,7 +680,6 @@ MonoBehaviour:
   _speed: 1
   _speed_rotation: 3
   _animator: {fileID: 322566939}
-  _rigidbody: {fileID: 322566942}
 --- !u!54 &322566942
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1515,8 +1514,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 285.36017, y: 0}
+  m_SizeDelta: {x: 570.72034, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1422904702
 MonoBehaviour:
@@ -1773,7 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59dee92e231f89e4b9e7fa6299d0ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 322566936}
+  _build: {fileID: 2224242}
   _testEnemyPrefab: {fileID: 1943711631956657227, guid: 3bb8a16d85d2ddd4886b731f61d9b12e,
     type: 3}
   _enemiesParent: {fileID: 885506472}
@@ -2329,9 +2328,9 @@ SceneRoots:
   - {fileID: 1791019114}
   - {fileID: 678717610}
   - {fileID: 1550494668}
+  - {fileID: 1475409377}
   - {fileID: 1698121493}
   - {fileID: 1873380400}
   - {fileID: 750619662}
   - {fileID: 938313900}
   - {fileID: 1047751490}
-  - {fileID: 1475409377}
