@@ -716,6 +716,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1047751490}
     m_Modifications:
+    - target: {fileID: -3981973251939777505, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+        type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -3981973251939777505, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+        type: 3}
+      propertyPath: _characterController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
       propertyPath: m_Name
       value: PolyArtWizardStandardMat
@@ -768,6 +778,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 583669596938256457, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1500,8 +1515,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 96.90355, y: 0}
-  m_SizeDelta: {x: 193.8071, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1422904702
 MonoBehaviour:
@@ -1644,9 +1659,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LogText: {fileID: 1422904703}
-  _playerPrefab: {fileID: 7157420652559009866, guid: 209ab234f0316934c8601ac3897a5054,
+  _playerPrefab: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
     type: 3}
-  _spawnBox: {fileID: 2224242}
 --- !u!4 &1475409377
 Transform:
   m_ObjectHideFlags: 0

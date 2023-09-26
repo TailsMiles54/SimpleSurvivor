@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     
     void Start()
     {
-        if (PhotonNetwork.InRoom && Test.LocalPlayerInstance==null)
+        if (PhotonNetwork.InRoom && Player.LocalPlayerInstance==null)
         {
             var defPos = new Vector3(404.665558f, 0, 533.629211f);
             PhotonNetwork.Instantiate(_playerPrefab.name,
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     
     public override void OnJoinedRoom()
     {
-        if (Test.LocalPlayerInstance == null)
+        if (Player.LocalPlayerInstance == null)
         {
             var defPos = new Vector3(404.665558f, 0, 533.629211f);
             PhotonNetwork.Instantiate(_playerPrefab.name,
