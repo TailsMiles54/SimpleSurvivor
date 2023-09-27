@@ -31,6 +31,8 @@ public class Player : MonoBehaviourPunCallbacks
     {
         if(!photonView.IsMine)
             return;
+
+        CameraController.Instance.SetupCamera(gameObject);
         
         transform.Rotate(0, Input.GetAxis("Horizontal") * _speed_rotation, 0);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -38,7 +40,6 @@ public class Player : MonoBehaviourPunCallbacks
         float curSpeed = _speed * Input.GetAxis("Vertical") * (Input.GetKey(KeyCode.LeftShift) ? 3 : 1);
 
         _animator.SetFloat("CurrentSpeed", curSpeed);
-        Debug.Log(curSpeed);
         _characterController.SimpleMove(forward * curSpeed);
     }
 
