@@ -1527,8 +1527,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 285.36017, y: 0}
-  m_SizeDelta: {x: 570.72034, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1422904702
 MonoBehaviour:
@@ -1671,7 +1671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LogText: {fileID: 1422904703}
-  _playerPrefab: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+  _playerMagePrefab: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+    type: 3}
+  _playerWarriorPrefab: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
     type: 3}
 --- !u!4 &1475409377
 Transform:

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using Photon.Pun;
+using Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +11,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_Text LogText;
-    [SerializeField] private GameObject _playerPrefab;
     
     void Start()
     {
         if (PhotonNetwork.InRoom && Player.LocalPlayerInstance==null)
         {
-            var defPos = new Vector3(404.665558f, 0, 533.629211f);
-            PhotonNetwork.Instantiate(_playerPrefab.name,
-                new Vector3(defPos.x + Random.Range(-5, 5), 0,
-                    defPos.z + Random.Range(-5, 5)), Quaternion.identity);
+             SpawnCharacter();
         }
     }
     
@@ -25,11 +24,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (Player.LocalPlayerInstance == null)
         {
-            var defPos = new Vector3(404.665558f, 0, 533.629211f);
-            PhotonNetwork.Instantiate(_playerPrefab.name,
-                new Vector3(defPos.x + Random.Range(-5, 5), 0,
-                    defPos.z + Random.Range(-5, 5)), Quaternion.identity);
+            SpawnCharacter();
         }
+    }
+
+    private void SpawnCharacter()
+    {
+        var defPos = new Vector3(404.665558f, 0, 533.629211f);
+
+        var prefab = SettingsProvider.Get<PlayerClassSettings>().Classes.First(x => x.Classes == PlayerInfo.PlayerClass).Prefab;
+        
+        PhotonNetwork.Instantiate(prefab.name,
+            new Vector3(defPos.x + Random.Range(-5, 5), 0,
+                defPos.z + Random.Range(-5, 5)), Quaternion.identity);
     }
 
     public void Leave()

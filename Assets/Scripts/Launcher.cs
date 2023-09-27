@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_Text LogText;
+    [SerializeField] private ToggleGroup _toggleGroup;
     
     void Start()
     {
@@ -31,6 +35,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Log("Joined to room");
+
+        PlayerInfo.PlayerClass = _toggleGroup.ActiveToggles().First().GetComponent<ClassToggle>().PlayerClass;
         
         PhotonNetwork.LoadLevel("SampleScene");
     }
