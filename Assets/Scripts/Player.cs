@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Photon.Pun;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private int _speed_rotation = 3;
     [SerializeField] private Animator _animator;
 
+    private Parameters _parameters = new Parameters(new List<Parameter>()
+    {
+        new Parameter(ParameterType.Health, 100f)
+    });
+    
     public static GameObject LocalPlayerInstance;
     
     // Start is called before the first frame update
