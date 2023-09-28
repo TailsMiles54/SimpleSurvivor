@@ -15,28 +15,7 @@ using AuthenticationException = System.Security.Authentication.AuthenticationExc
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private TMP_Text LogText;
     [SerializeField] private ToggleGroup _toggleGroup;
-    
-    [SerializeField] private TMP_Text _login;
-    [SerializeField] private TMP_Text _password;
-    
-    async void Awake()
-    {
-        try
-        {
-            await UnityServices.InitializeAsync();
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-        }
-    }
-
-    public async void Register()
-    {
-        await SignUpWithUsernamePasswordAsync(_login.text, _password.text);
-    }
     
     void Start()
     {
@@ -44,52 +23,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.ConnectUsingSettings();
-    }
-
-    // Setup authentication event handlers if desired
-    void SetupEvents() {
-        AuthenticationService.Instance.SignedIn += () => {
-            // Shows how to get a playerID
-            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
-
-            // Shows how to get an access token
-            Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
-
-        };
-
-        AuthenticationService.Instance.SignInFailed += (err) => {
-            Debug.LogError(err);
-        };
-
-        AuthenticationService.Instance.SignedOut += () => {
-            Debug.Log("Player signed out.");
-        };
-
-        AuthenticationService.Instance.Expired += () =>
-        {
-            Debug.Log("Player session could not be refreshed and expired.");
-        };
-    }
-    
-    async Task SignUpWithUsernamePasswordAsync(string username, string password)
-    {
-        try
-        {
-            await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
-            Debug.Log("SignUp is successful.");
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException ex)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
     }
     
     public void CreateRoom()
@@ -119,7 +52,5 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void Log(string message)
     {
         Debug.Log(message);
-        LogText.text += "\n";
-        LogText.text += message;
     }
 }
