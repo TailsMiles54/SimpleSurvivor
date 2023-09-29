@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
@@ -31,5 +32,36 @@ public static class SaveDataManager
         {
             Debug.LogError(e);
         }
+    }
+
+    public static async Task<string> RetrieveSpecificData(string key)
+    {
+        try
+        {
+            var results = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string> {key});
+
+            if (results.TryGetValue(key, out var item))
+            {
+                return item;
+            }
+            else
+            {
+                Debug.Log($"There is no such key as {key}!");
+            }
+        }
+        catch (CloudSaveValidationException e)
+        {
+            Debug.LogError(e);
+        }
+        catch (CloudSaveRateLimitedException e)
+        {
+            Debug.LogError(e);
+        }
+        catch (CloudSaveException e)
+        {
+            Debug.LogError(e);
+        }
+
+        return default;
     }
 }

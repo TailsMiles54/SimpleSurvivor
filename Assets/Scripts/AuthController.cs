@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class AuthController : MonoBehaviour
 {
     [SerializeField] private GameObject _authPanel;
+    [SerializeField] private GameObject _lobbyPanel;
     [SerializeField] private GameObject _characterPanel;
     
     [SerializeField] private TMP_InputField _login;
@@ -46,12 +47,24 @@ public class AuthController : MonoBehaviour
         SignOutWithUsernamePasswordAsync();
     }
 
-    void SetupEvents() {
-        AuthenticationService.Instance.SignedIn += () => {
+    public void SetupEvents() {
+        AuthenticationService.Instance.SignedIn += async () => {
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
+
             _authPanel.SetActive(false);
-            _characterPanel.SetActive(true);
+            var nickName = await SaveDataManager.RetrieveSpecificData("name");
+            
+            if (string.IsNullOrEmpty(nickName))
+            {
+                _lobbyPanel.SetActive(false);
+                _characterPanel.SetActive(true);
+            }
+            else
+            {
+                _lobbyPanel.SetActive(true);
+                _characterPanel.SetActive(false);
+            }
         };
 
         AuthenticationService.Instance.SignInFailed += (err) => {
@@ -60,6 +73,7 @@ public class AuthController : MonoBehaviour
 
         AuthenticationService.Instance.SignedOut += () => {
             _authPanel.SetActive(true);
+            _lobbyPanel.SetActive(false);
             _characterPanel.SetActive(false);
             Debug.Log("Player signed out.");
         };

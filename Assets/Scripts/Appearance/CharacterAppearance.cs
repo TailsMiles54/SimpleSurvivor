@@ -12,7 +12,7 @@ public class CharacterAppearance : MonoBehaviour
 public class EquipmentSlot
 {
     public EquipmentSlotType SlotType;
-    public List<EquipmentElement> AllowedElements;
+    public List<EquipmentElement> AllowedElements; 
     public string ItemId;
 }
 
@@ -20,8 +20,8 @@ public class EquipmentSlot
 public class AppearanceSlot
 {
     public AppearanceType AppearanceType;
-    public List<AppearanceElement> AllowedElements;
-    public string ItemId;
+    public List<AppearanceElement> AllowedElements; 
+    public string ItemId; 
 
     public void Set(int id)
     {

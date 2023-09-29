@@ -1216,7 +1216,7 @@ GameObject:
   - component: {fileID: 159585743}
   - component: {fileID: 159585742}
   m_Layer: 5
-  m_Name: CreateCharacterPanel
+  m_Name: CharacterPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4732,7 +4732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _authPanel: {fileID: 94709105}
-  _characterPanel: {fileID: 1641596686}
+  _lobbyPanel: {fileID: 1641596686}
+  _characterPanel: {fileID: 159585740}
   _login: {fileID: 76356981}
   _password: {fileID: 1773131317}
 --- !u!4 &1180301023
@@ -5162,7 +5163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7834062, y: 0.67622226}
   m_AnchorMax: {x: 0.98171866, y: 0.8277778}
-  m_AnchoredPosition: {x: -0.00012207031, y: -0.000061035156}
+  m_AnchoredPosition: {x: -0.00024414062, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395499956
@@ -5310,7 +5311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7834062, y: 0.8277778}
   m_AnchorMax: {x: 0.98171866, y: 0.96688896}
-  m_AnchoredPosition: {x: -0.00012207031, y: -0.000061035156}
+  m_AnchoredPosition: {x: -0.00024414062, y: 0}
   m_SizeDelta: {x: 0, y: 0.000015258789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1438505974
@@ -6130,7 +6131,7 @@ GameObject:
   - component: {fileID: 1641596689}
   - component: {fileID: 1641596688}
   m_Layer: 5
-  m_Name: UserPanel
+  m_Name: LobbyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

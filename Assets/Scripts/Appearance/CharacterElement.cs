@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class CharacterElement : MonoBehaviour 
 {
-    public string Id = Guid.NewGuid().ToString();
+    public string Id = Guid.NewGuid().ToString(); 
 }

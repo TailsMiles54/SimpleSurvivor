@@ -2,5 +2,5 @@ using DefaultNamespace;
 
 public class AppearanceElement : CharacterElement 
 {
-    public AppearanceType AppearanceType;
+    public AppearanceType AppearanceType; 
 }
