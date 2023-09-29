@@ -11,7 +11,6 @@ using UnityEngine.UI;
 public class AuthController : MonoBehaviour
 {
     [SerializeField] private GameObject _authPanel;
-    [SerializeField] private GameObject _connectPanel;
     [SerializeField] private GameObject _characterPanel;
     
     [SerializeField] private TMP_InputField _login;
@@ -52,7 +51,6 @@ public class AuthController : MonoBehaviour
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
             _authPanel.SetActive(false);
-            _connectPanel.SetActive(false);
             _characterPanel.SetActive(true);
         };
 
@@ -62,7 +60,6 @@ public class AuthController : MonoBehaviour
 
         AuthenticationService.Instance.SignedOut += () => {
             _authPanel.SetActive(true);
-            _connectPanel.SetActive(false);
             _characterPanel.SetActive(false);
             Debug.Log("Player signed out.");
         };
