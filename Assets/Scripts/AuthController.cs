@@ -21,6 +21,7 @@ public class AuthController : MonoBehaviour
         {
             await UnityServices.InitializeAsync();
             SetupEvents();
+            SaveDataManager.Setup();
         }
         catch (Exception e)
         {
@@ -83,7 +84,7 @@ public class AuthController : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            Debug.Log("SignUp is successful.");
+            Debug.Log("SignIn is successful.");
         }
         catch (AuthenticationException ex)
         {
