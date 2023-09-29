@@ -11,6 +11,11 @@ public class AppearanceController : MonoBehaviour
 
     public void Start()
     {
+        Setup();
+    }
+
+    private void Setup()
+    {
         foreach (var appearanceSlot in _characterAppearance.AppearanceSlots)
         {
             var controller = Instantiate(_controllerPrefab, _controllersParent);

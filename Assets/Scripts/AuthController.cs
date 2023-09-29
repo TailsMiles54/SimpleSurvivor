@@ -13,6 +13,11 @@ public class AuthController : MonoBehaviour
     [SerializeField] private GameObject _authPanel;
     [SerializeField] private GameObject _lobbyPanel;
     [SerializeField] private GameObject _characterPanel;
+
+    [SerializeField] private TMP_InputField _characterName;
+    [SerializeField] private CharacterAppearance _characterAppearance;
+    
+    
     
     [SerializeField] private TMP_InputField _login;
     [SerializeField] private TMP_InputField _password;
@@ -47,13 +52,29 @@ public class AuthController : MonoBehaviour
         SignOutWithUsernamePasswordAsync();
     }
 
+    public void SaveCharacter()
+    {
+        if (!string.IsNullOrEmpty(_characterName.text))
+        {
+            SaveDataManager.Save("character_name", _characterName.text);
+            foreach (var appearanceSlot in _characterAppearance.AppearanceSlots)
+            {
+                SaveDataManager.Save(appearanceSlot.AppearanceType.ToString(), appearanceSlot.ItemId);
+            }
+            _lobbyPanel.SetActive(true);
+            _characterPanel.SetActive(false);
+        }
+    }
+
     public void SetupEvents() {
         AuthenticationService.Instance.SignedIn += async () => {
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
 
             _authPanel.SetActive(false);
-            var nickName = await SaveDataManager.RetrieveSpecificData("name");
+            var nickName = await SaveDataManager.RetrieveSpecificData("character_name");
+
+            _characterAppearance.LoadAppearance();
             
             if (string.IsNullOrEmpty(nickName))
             {

@@ -35,6 +35,7 @@ public class ChangeAppearanceController : MonoBehaviour
     public void Setup(AppearanceSlot appearanceSlot)
     {
         _appearanceSlot = appearanceSlot;
+        _appearanceSlot.Set(CurrentItemIndex());
         _text.text = $"{_appearanceSlot.AppearanceType.ToString()} {CurrentItemIndex()+1}/{_appearanceSlot.AllowedElements.Count}";
         
         _buttonBack.onClick.AddListener(() =>
