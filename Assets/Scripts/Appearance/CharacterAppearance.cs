@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -40,6 +41,11 @@ public class AppearanceSlot
 
     public void ChangeElement()
     {
+        if (string.IsNullOrEmpty(ItemId))
+        {
+            ItemId = AllowedElements.First().Id;
+        }
+        
         foreach (var appearanceElement in AllowedElements)
         {
             appearanceElement.gameObject.SetActive(appearanceElement.Id == ItemId);
