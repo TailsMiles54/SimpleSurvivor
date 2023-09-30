@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ using Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private TMP_Text LogText;
-    
+    [FormerlySerializedAs("LogText")] [SerializeField] private TMP_Text _logText;
+    [SerializeField] private GameObject _playerPrefab;
+
     void Start()
     {
         if (PhotonNetwork.InRoom && Player.LocalPlayerInstance==null)
@@ -31,10 +35,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void SpawnCharacter()
     {
         var defPos = new Vector3(404.665558f, 0, 533.629211f);
-
-        var prefab = SettingsProvider.Get<PlayerClassSettings>().Classes.First(x => x.Classes == PlayerInfo.PlayerClass).Prefab;
         
-        PhotonNetwork.Instantiate(prefab.name,
+        PhotonNetwork.Instantiate(_playerPrefab.name,
             new Vector3(defPos.x + Random.Range(-5, 5), 0,
                 defPos.z + Random.Range(-5, 5)), Quaternion.identity);
     }
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void Log(string message)
     {
         Debug.Log(message);
-        LogText.text += "\n";
-        LogText.text += message;
+        _logText.text += "\n";
+        _logText.text += message;
     }
 }

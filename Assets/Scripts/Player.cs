@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : MonoBehaviourPunCallbacks
 {
     [SerializeField] private CharacterController _characterController;
+
+    [SerializeField] private CharacterAppearance _characterAppearance;
     
     [SerializeField] private int _speed = 1;
     [SerializeField] private int _speed_rotation = 3;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            _characterAppearance.LoadAppearance();
             LocalPlayerInstance = gameObject;
         }
     }
@@ -37,7 +40,7 @@ public class Player : MonoBehaviourPunCallbacks
     {
         if(!photonView.IsMine)
             return;
-
+        
         CameraController.Instance.SetupCamera(gameObject);
         
         transform.Rotate(0, Input.GetAxis("Horizontal") * _speed_rotation, 0);

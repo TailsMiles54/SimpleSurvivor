@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using Photon.Pun;
 using UnityEngine;
 
-public class CharacterAppearance : MonoBehaviour
+public class CharacterAppearance : MonoBehaviour, IPunObservable
 {
     public List<AppearanceSlot> AppearanceSlots;
-
+    
     public async void LoadAppearance()
     {
         foreach (var appearanceSlot in AppearanceSlots)
@@ -15,6 +16,11 @@ public class CharacterAppearance : MonoBehaviour
             appearanceSlot.ItemId = await SaveDataManager.RetrieveSpecificData(appearanceSlot.AppearanceType.ToString()) ?? string.Empty;
             appearanceSlot.ChangeElement();
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
     }
 }
 

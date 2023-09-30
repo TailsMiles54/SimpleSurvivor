@@ -14,10 +14,12 @@ public class AuthController : MonoBehaviour
     [SerializeField] private GameObject _lobbyPanel;
     [SerializeField] private GameObject _characterPanel;
 
+    [SerializeField] private Launcher _launcher;
+    
     [SerializeField] private TMP_InputField _characterName;
     [SerializeField] private CharacterAppearance _characterAppearance;
-    
-    
+
+    [SerializeField] private TMP_Text _characterShowedName;
     
     [SerializeField] private TMP_InputField _login;
     [SerializeField] private TMP_InputField _password;
@@ -72,18 +74,18 @@ public class AuthController : MonoBehaviour
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
 
             _authPanel.SetActive(false);
-            var nickName = await SaveDataManager.RetrieveSpecificData("character_name");
-
             _characterAppearance.LoadAppearance();
             
-            if (string.IsNullOrEmpty(nickName))
+            if (string.IsNullOrEmpty(await SaveDataManager.RetrieveSpecificData("character_name")))
             {
                 _lobbyPanel.SetActive(false);
                 _characterPanel.SetActive(true);
             }
             else
             {
+                _characterShowedName.text = await SaveDataManager.RetrieveSpecificData("character_name");
                 _lobbyPanel.SetActive(true);
+                _launcher.SetupData();
                 _characterPanel.SetActive(false);
             }
         };

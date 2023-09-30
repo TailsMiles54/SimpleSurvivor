@@ -1,30 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DefaultNamespace;
 using Photon.Pun;
 using Photon.Realtime;
-using TMPro;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
 using UnityEngine;
-using UnityEngine.UI;
-using AuthenticationException = System.Security.Authentication.AuthenticationException;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private ToggleGroup _toggleGroup;
-    
-    void Start()
+    public async void SetupData()
     {
-        PhotonNetwork.NickName = Guid.NewGuid().ToString();
+        PhotonNetwork.NickName = await SaveDataManager.RetrieveSpecificData("character_name");
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.ConnectUsingSettings();
     }
-    
+
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 2 });
@@ -38,8 +25,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Log("Joined to room");
-
-        PlayerInfo.PlayerClass = _toggleGroup.ActiveToggles().First().GetComponent<ClassToggle>().PlayerClass;
         
         PhotonNetwork.LoadLevel("SampleScene");
     }
