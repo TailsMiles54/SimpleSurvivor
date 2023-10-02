@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Sirenix.OdinInspector;
@@ -50,6 +51,24 @@ public class Player : MonoBehaviourPunCallbacks
 
         _animator.SetFloat("y", curSpeed);
         _animator.SetFloat("x", curHorizontalSpeed);
+
+
+        if (Input.GetButtonDown("Skill1"))
+        {
+            Attack1();
+        }
+        else if(Input.GetButtonDown("Skill2"))
+        {
+            Attack2();
+        }
+        else if(Input.GetButtonDown("Skill3"))
+        {
+            Attack3();
+        }
+        else if(Input.GetButtonDown("Skill4"))
+        {
+            Attack4();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
