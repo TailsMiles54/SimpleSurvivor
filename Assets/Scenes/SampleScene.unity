@@ -1670,10 +1670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f295de7b77dcc8048aab51e92cf79b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LogText: {fileID: 1422904703}
-  _playerMagePrefab: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
-    type: 3}
-  _playerWarriorPrefab: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
+  _logText: {fileID: 1422904703}
+  _playerPrefab: {fileID: 8001354749718593143, guid: b419e164ab53516438da636332342da9,
     type: 3}
 --- !u!4 &1475409377
 Transform:

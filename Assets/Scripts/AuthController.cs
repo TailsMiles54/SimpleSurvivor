@@ -6,11 +6,20 @@ using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AuthController : MonoBehaviour
 {
     [SerializeField] private GameObject _authPanel;
-    [SerializeField] private GameObject _connectPanel;
+    [SerializeField] private GameObject _lobbyPanel;
+    [SerializeField] private GameObject _characterPanel;
+
+    [SerializeField] private Launcher _launcher;
+    
+    [SerializeField] private TMP_InputField _characterName;
+    [SerializeField] private CharacterAppearance _characterAppearance;
+
+    [SerializeField] private TMP_Text _characterShowedName;
     
     [SerializeField] private TMP_InputField _login;
     [SerializeField] private TMP_InputField _password;
@@ -21,6 +30,7 @@ public class AuthController : MonoBehaviour
         {
             await UnityServices.InitializeAsync();
             SetupEvents();
+            SaveDataManager.Setup();
         }
         catch (Exception e)
         {
@@ -39,12 +49,45 @@ public class AuthController : MonoBehaviour
         await SignInWithUsernamePasswordAsync(_login.text, _password.text);
     }
 
-    void SetupEvents() {
-        AuthenticationService.Instance.SignedIn += () => {
+    public void Exit()
+    {
+        SignOutWithUsernamePasswordAsync();
+    }
+
+    public void SaveCharacter()
+    {
+        if (!string.IsNullOrEmpty(_characterName.text))
+        {
+            SaveDataManager.Save("character_name", _characterName.text);
+            foreach (var appearanceSlot in _characterAppearance.AppearanceSlots)
+            {
+                SaveDataManager.Save(appearanceSlot.AppearanceType.ToString(), appearanceSlot.ItemId);
+            }
+            _lobbyPanel.SetActive(true);
+            _characterPanel.SetActive(false);
+        }
+    }
+
+    public void SetupEvents() {
+        AuthenticationService.Instance.SignedIn += async () => {
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
+
             _authPanel.SetActive(false);
-            _connectPanel.SetActive(true);
+            _characterAppearance.LoadAppearance();
+            
+            if (string.IsNullOrEmpty(await SaveDataManager.RetrieveSpecificData("character_name")))
+            {
+                _lobbyPanel.SetActive(false);
+                _characterPanel.SetActive(true);
+            }
+            else
+            {
+                _characterShowedName.text = await SaveDataManager.RetrieveSpecificData("character_name");
+                _lobbyPanel.SetActive(true);
+                _launcher.SetupData();
+                _characterPanel.SetActive(false);
+            }
         };
 
         AuthenticationService.Instance.SignInFailed += (err) => {
@@ -52,6 +95,9 @@ public class AuthController : MonoBehaviour
         };
 
         AuthenticationService.Instance.SignedOut += () => {
+            _authPanel.SetActive(true);
+            _lobbyPanel.SetActive(false);
+            _characterPanel.SetActive(false);
             Debug.Log("Player signed out.");
         };
 
@@ -83,7 +129,23 @@ public class AuthController : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            Debug.Log("SignUp is successful.");
+            Debug.Log("SignIn is successful.");
+        }
+        catch (AuthenticationException ex)
+        {
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            Debug.LogException(ex);
+        }
+    }
+    
+    public void SignOutWithUsernamePasswordAsync()
+    {
+        try
+        {
+            AuthenticationService.Instance.SignOut();
         }
         catch (AuthenticationException ex)
         {

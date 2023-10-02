@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : MonoBehaviourPunCallbacks
 {
     [SerializeField] private CharacterController _characterController;
+
+    [SerializeField] private CharacterAppearance _characterAppearance;
     
     [SerializeField] private int _speed = 1;
     [SerializeField] private int _speed_rotation = 3;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            _characterAppearance.LoadAppearance();
             LocalPlayerInstance = gameObject;
         }
     }
@@ -37,16 +40,16 @@ public class Player : MonoBehaviourPunCallbacks
     {
         if(!photonView.IsMine)
             return;
-
+        
         CameraController.Instance.SetupCamera(gameObject);
         
-        transform.Rotate(0, Input.GetAxis("Horizontal") * _speed_rotation, 0);
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        transform.Rotate(0, Input.GetAxis("Mouse X") * _speed_rotation, 0);
         
-        float curSpeed = _speed * Input.GetAxis("Vertical") * (Input.GetKey(KeyCode.LeftShift) ? 3 : 1);
+        float curSpeed = _speed * Input.GetAxis("Vertical");
+        float curHorizontalSpeed = _speed * Input.GetAxis("Horizontal");
 
-        _animator.SetFloat("CurrentSpeed", curSpeed);
-        _characterController.SimpleMove(forward * curSpeed);
+        _animator.SetFloat("y", curSpeed);
+        _animator.SetFloat("x", curHorizontalSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,5 +95,37 @@ public class Player : MonoBehaviourPunCallbacks
         if(!photonView.IsMine)
             return;
         _animator.SetTrigger("WinTrigger");
+    }
+
+    [Button("Attack1"), HorizontalGroup("Attacks")]
+    private void Attack1()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Attack1Trigger");
+    }
+
+    [Button("Attack2"), HorizontalGroup("Attacks")]
+    private void Attack2()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Attack2Trigger");
+    }
+
+    [Button("Attack3"), HorizontalGroup("Attacks")]
+    private void Attack3()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Attack3Trigger");
+    }
+
+    [Button("Attack4"), HorizontalGroup("Attacks")]
+    private void Attack4()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Attack4Trigger");
     }
 }
