@@ -4899,6 +4899,7 @@ MonoBehaviour:
   _authPanel: {fileID: 94709105}
   _lobbyPanel: {fileID: 1641596686}
   _characterPanel: {fileID: 159585740}
+  _launcher: {fileID: 700431491}
   _characterName: {fileID: 1470851016}
   _characterAppearance: {fileID: 991319315}
   _characterShowedName: {fileID: 846708893}

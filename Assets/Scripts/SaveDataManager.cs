@@ -7,10 +7,16 @@ using UnityEngine;
 
 public static class SaveDataManager
 {
+    private static bool _instantiated;
+    
     public static async void Setup()
     {
-        await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        if(!_instantiated)
+        {
+            await UnityServices.InitializeAsync();
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            _instantiated = true;
+        }
     }
 
     public static async void Save(string key, object data)
