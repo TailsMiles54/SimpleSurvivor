@@ -69,6 +69,10 @@ public class Player : MonoBehaviourPunCallbacks
         {
             Attack4();
         }
+        else if(Input.GetButtonDown("Fire1"))
+        {
+            AttackCombo();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -114,6 +118,16 @@ public class Player : MonoBehaviourPunCallbacks
         if(!photonView.IsMine)
             return;
         _animator.SetTrigger("WinTrigger");
+    }
+
+    [Button("AttackCombo"), HorizontalGroup("Attacks")]
+    private void AttackCombo()
+    {
+        if(!photonView.IsMine)
+            return;
+
+        _animator.SetBool("InCombo", false); 
+        _animator.SetTrigger("AttackCombo");
     }
 
     [Button("Attack1"), HorizontalGroup("Attacks")]
