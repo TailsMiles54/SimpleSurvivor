@@ -22,14 +22,14 @@ public class Player : MonoBehaviourPunCallbacks
     
     public static GameObject LocalPlayerInstance;
     
-    // Start is called before the first frame update
     void Start()
     {
         if (photonView.IsMine)
         {
-            _characterAppearance.LoadAppearance();
             LocalPlayerInstance = gameObject;
         }
+        
+        _characterAppearance.LoadAppearance(photonView.IsMine);
     }
     
     private void Awake()

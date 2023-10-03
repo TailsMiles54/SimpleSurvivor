@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using Newtonsoft.Json;
 using Photon.Pun;
 using UnityEngine;
 
@@ -9,18 +10,53 @@ public class CharacterAppearance : MonoBehaviour, IPunObservable
 {
     public List<AppearanceSlot> AppearanceSlots;
     
-    public async void LoadAppearance()
+    public async void LoadAppearance(bool isMine = true)
+    {
+        if(isMine)
+        {
+            foreach (var appearanceSlot in AppearanceSlots)
+            {
+                appearanceSlot.ItemId =
+                    await SaveDataManager.RetrieveSpecificData(appearanceSlot.AppearanceType.ToString()) ??
+                    string.Empty;
+            }
+            SetupAppearance();
+        }
+    }
+
+    public void SetupAppearance()
     {
         foreach (var appearanceSlot in AppearanceSlots)
         {
-            appearanceSlot.ItemId = await SaveDataManager.RetrieveSpecificData(appearanceSlot.AppearanceType.ToString()) ?? string.Empty;
             appearanceSlot.ChangeElement();
         }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        
+        if (stream.IsWriting) 
+        {
+            foreach (var appearanceSlot in AppearanceSlots)
+            {
+               stream.SendNext (appearanceSlot.AppearanceType);
+               stream.SendNext (appearanceSlot.ItemId);
+            }
+        } 
+        else
+        {
+            for (int i = 0; i < AppearanceSlots.Count; i++)
+            {
+                var appearanceType = (AppearanceType)stream.ReceiveNext();
+                var appearanceId = (string)stream.ReceiveNext();
+
+                var currentSlot = AppearanceSlots.First(x => x.AppearanceType == appearanceType);
+                if (currentSlot.ItemId != appearanceId)
+                {
+                    currentSlot.ItemId = appearanceId;
+                    currentSlot.ChangeElement();
+                }
+            }
+        }
     }
 }
 
