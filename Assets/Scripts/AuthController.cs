@@ -146,6 +146,7 @@ public class AuthController : MonoBehaviour
         try
         {
             AuthenticationService.Instance.SignOut();
+            AuthenticationService.Instance.ClearSessionToken();
         }
         catch (AuthenticationException ex)
         {

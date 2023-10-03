@@ -169,6 +169,70 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Attack4Trigger");
     }
 
+    [Button("Dance"), HorizontalGroup("Actions2")]
+    private void Dance()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Dance");
+    }
+
+    [Button("LevelUp"), HorizontalGroup("Actions2")]
+    private void LevelUp()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("LevelUp");
+    }
+
+    [Button("Challenging"), HorizontalGroup("Actions2")]
+    private void Challenging()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Challenging");
+    }
+
+    [Button("Dizzy"), HorizontalGroup("Actions2")]
+    private void Dizzy()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Dizzy");
+    }
+
+    [Button("Victory"), HorizontalGroup("Actions2")]
+    private void Victory()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Victory");
+    }
+
+    [Button("Search"), HorizontalGroup("Actions2")]
+    private void Search()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("Search");
+    }
+
+    [Button("GetHit1"), HorizontalGroup("Hits")]
+    private void GetHit1()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("GetHit1");
+    }
+
+    [Button("GetHit2"), HorizontalGroup("Hits")]
+    private void GetHit2()
+    {
+        if(!photonView.IsMine)
+            return;
+        _animator.SetTrigger("GetHit2");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.name);
