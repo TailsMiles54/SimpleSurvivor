@@ -15,6 +15,8 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private int _speed_rotation = 3;
     [SerializeField] private Animator _animator;
 
+    private bool _dead;
+
     private Parameters _parameters = new Parameters(new List<Parameter>()
     {
         new Parameter(ParameterType.Health, 100f)
@@ -44,7 +46,8 @@ public class Player : MonoBehaviourPunCallbacks
         
         CameraController.Instance.SetupCamera(gameObject);
         
-        transform.Rotate(0, Input.GetAxis("Mouse X") * _speed_rotation, 0);
+        if(!_dead)
+            transform.Rotate(0, Input.GetAxis("Mouse X") * _speed_rotation, 0);
         
         float curSpeed = _speed * Input.GetAxis("Vertical");
         float curHorizontalSpeed = _speed * Input.GetAxis("Horizontal");
@@ -110,6 +113,28 @@ public class Player : MonoBehaviourPunCallbacks
 
         _animator.SetBool("InCombo", false); 
         _animator.SetTrigger("AttackCombo");
+    }
+    
+    [Button("Die"), HorizontalGroup("Actions")]
+    private void Die()
+    {
+        if(!photonView.IsMine)
+            return;
+
+        _dead = true;
+        _animator.SetTrigger("Die");
+        _animator.SetBool("Dead", _dead);
+    }
+    
+    [Button("GetUp"), HorizontalGroup("Actions")]
+    private void GetUp()
+    {
+        if(!photonView.IsMine)
+            return;
+
+        _dead = true;
+        _animator.SetTrigger("GetUp");
+        _animator.SetBool("Dead", _dead);
     }
 
     [Button("Attack1"), HorizontalGroup("Attacks")]
