@@ -49,9 +49,15 @@ public class Player : MonoBehaviourPunCallbacks
         float curSpeed = _speed * Input.GetAxis("Vertical");
         float curHorizontalSpeed = _speed * Input.GetAxis("Horizontal");
 
+        curSpeed = Input.GetButton("Shift") ? curSpeed * 2 : curSpeed;
+        
         _animator.SetFloat("y", curSpeed);
         _animator.SetFloat("x", curHorizontalSpeed);
 
+        if (Input.GetButtonDown("Roll"))
+        {
+            Roll();
+        }
 
         if (Input.GetButtonDown("Skill1"))
         {
@@ -73,6 +79,15 @@ public class Player : MonoBehaviourPunCallbacks
         {
             AttackCombo();
         }
+        else if (Input.GetButtonDown("Roll"))
+        {
+            Roll();
+        }
+    }
+
+    private void Roll()
+    {
+        _animator.SetTrigger("Roll");
     }
 
     private void OnTriggerEnter(Collider other)
