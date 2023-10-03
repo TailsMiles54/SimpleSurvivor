@@ -83,58 +83,25 @@ public class Player : MonoBehaviourPunCallbacks
         {
             Roll();
         }
+        else if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
+    }
+
+    private void Jump()
+    {
+        if (_characterController.isGrounded && !_animator.GetCurrentAnimatorStateInfo(0).IsName("JumpFull_Normal_RM_SwordAndShield"))
+        {
+            _animator.SetTrigger("Jump");
+        }
     }
 
     private void Roll()
     {
         _animator.SetTrigger("Roll");
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.name);
-    }
-
-    [Button("PickUp"), HorizontalGroup("Animations")]
-    private void PickUp()
-    {
-        if(!photonView.IsMine)
-            return;
-        _animator.SetTrigger("PickUpTrigger");
-    }
-
-    [Button("Interact"), HorizontalGroup("Animations")]
-    private void Interact()
-    {
-        if(!photonView.IsMine)
-            return;
-        _animator.SetTrigger("InteractTrigger");
-    }
-
-    [Button("Die"), HorizontalGroup("Animations")]
-    private void Die()
-    {
-        if(!photonView.IsMine)
-            return;
-        _animator.SetTrigger("DieTrigger");
-    }
-
-    [Button("DieRecovery"), HorizontalGroup("Animations")]
-    private void DieRecovery()
-    {
-        if(!photonView.IsMine)
-            return;
-        _animator.SetTrigger("DieRecoveryTrigger");
-    }
-
-    [Button("Win"), HorizontalGroup("Animations")]
-    private void Win()
-    {
-        if(!photonView.IsMine)
-            return;
-        _animator.SetTrigger("WinTrigger");
-    }
-
+    
     [Button("AttackCombo"), HorizontalGroup("Attacks")]
     private void AttackCombo()
     {
@@ -175,5 +142,10 @@ public class Player : MonoBehaviourPunCallbacks
         if(!photonView.IsMine)
             return;
         _animator.SetTrigger("Attack4Trigger");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
     }
 }
