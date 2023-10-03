@@ -17,7 +17,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 2 });
     }
 
-    public void JoinRoom()
+    public void JoinRoom() 
     {
         PhotonNetwork.JoinRandomRoom();
     }
