@@ -1,8 +1,11 @@
-namespace DefaultNamespace
+public enum PlayerClasses
 {
-    public enum PlayerClasses
-    {
-        Mage = 0,
-        Warrior = 1
-    }
+    BowAndArrow = 0,
+    DoubleSword = 1,
+    MagicWand = 2,
+    NoWeapon = 3,
+    SingleSword = 4,
+    Spear = 5,
+    SwordAndShield = 6,
+    TwoHandSword = 7
 }

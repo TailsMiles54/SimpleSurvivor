@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb0310e50214ca68035fded764804fd, type: 3}
+  m_Name: AnimatorOverrides
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ClassOverrideAnimators:
+  - Class: 0
+    AnimatorOverrideController: {fileID: 22100000, guid: 77110da1eb2409346a777c2340c050c9,
+      type: 2}
+  - Class: 1
+    AnimatorOverrideController: {fileID: 0}
+  - Class: 2
+    AnimatorOverrideController: {fileID: 0}
+  - Class: 3
+    AnimatorOverrideController: {fileID: 0}
+  - Class: 4
+    AnimatorOverrideController: {fileID: 0}
+  - Class: 5
+    AnimatorOverrideController: {fileID: 0}
+  - Class: 6
+    AnimatorOverrideController: {fileID: 0}
+  - Class: 7
+    AnimatorOverrideController: {fileID: 22100000, guid: 70769ccab38b93046967d40b0869099c,
+      type: 2}

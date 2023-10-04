@@ -5003,6 +5003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 4127741048752567809}
   _characterAppearance: {fileID: 488817358839089689}
+  _currentClass: 0
   _speed: 1
   _speed_rotation: 3
   _animator: {fileID: 7191100790416280148}

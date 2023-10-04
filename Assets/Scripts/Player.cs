@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
+using Settings;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,6 +12,8 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private CharacterController _characterController;
 
     [SerializeField] private CharacterAppearance _characterAppearance;
+
+    [SerializeField] private PlayerClasses _currentClass;
     
     [SerializeField] private int _speed = 1;
     [SerializeField] private int _speed_rotation = 3;
@@ -57,12 +61,12 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetFloat("y", curSpeed);
         _animator.SetFloat("x", curHorizontalSpeed);
 
-        if (Input.GetButtonDown("Roll"))
-        {
-            Roll();
-        }
 
-        if (Input.GetButtonDown("Skill1"))
+        if (Input.GetButtonDown("Switch weapon"))
+        {
+            SwitchWeapon();
+        }
+        else if (Input.GetButtonDown("Skill1"))
         {
             Attack1();
         }
@@ -90,6 +94,12 @@ public class Player : MonoBehaviourPunCallbacks
         {
             Jump();
         }
+    }
+
+    private void SwitchWeapon()
+    {
+        _animator.runtimeAnimatorController = SettingsProvider.Get<AnimatorOverrides>().ClassOverrideAnimators
+            .First(x => x.Class == _currentClass).AnimatorOverrideController;
     }
 
     private void Jump()

@@ -21,4 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _settingsList: []
+  _settingsList:
+  - {fileID: 11400000, guid: cbb755464af36a84685246e5f17fb838, type: 2}
