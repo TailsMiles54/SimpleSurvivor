@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using Photon.Pun;
 using Settings;
 using Sirenix.OdinInspector;
@@ -13,6 +14,7 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private CharacterController _characterController;
 
     [SerializeField] private CharacterAppearance _characterAppearance;
+    [SerializeField] private CharacterEquipment _characterEquipment;
 
     [SerializeField] private PlayerClasses _currentClass;
     
@@ -28,6 +30,21 @@ public class Player : MonoBehaviourPunCallbacks
     {
         new Parameter(ParameterType.Health, 100f)
     });
+
+    private List<string> _attackAnimsNames = new List<string>()
+    {
+        "Attack01",
+        "Attack02",
+        "Attack03",
+        "Attack04",
+        "Combo01",
+        "Combo02",
+        "Combo03",
+        "Combo04",
+        "Combo05",
+    };
+
+    private bool _inAttack;
     
     public static GameObject LocalPlayerInstance;
     
@@ -39,6 +56,7 @@ public class Player : MonoBehaviourPunCallbacks
         }
         
         _characterAppearance.LoadAppearance(photonView.IsMine);
+        _characterEquipment.LoadAppearance(photonView.IsMine);
     }
     
     private void Awake()
@@ -80,8 +98,7 @@ public class Player : MonoBehaviourPunCallbacks
         
         _animator.SetFloat("y", curSpeed);
         _animator.SetFloat("x", curHorizontalSpeed);
-
-
+        
         if (Input.GetButtonDown("Switch weapon"))
         {
             SwitchWeapon();
@@ -113,6 +130,30 @@ public class Player : MonoBehaviourPunCallbacks
         else if (Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+
+        _inAttack = false;
+        
+        foreach (var animName in _attackAnimsNames)
+        {
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName(animName))
+            {
+                _inAttack = true;
+            }
+        }
+
+        var slots = _characterEquipment.EquipmentSlots.Where(x =>
+            x.SlotType is EquipmentSlotType.LeftHand or EquipmentSlotType.RightHand);
+
+        foreach (var equipmentSlot in slots)
+        {
+            var equipmentElement = equipmentSlot.AllowedElements.FirstOrDefault(x =>
+                x.GetComponent<EquipmentElement>().Id == equipmentSlot.ItemId);
+
+            if (equipmentElement != null && equipmentElement.TryGetComponent(out BoxCollider boxCollider))
+            {
+                boxCollider.enabled = _inAttack;
+            }
         }
     }
 

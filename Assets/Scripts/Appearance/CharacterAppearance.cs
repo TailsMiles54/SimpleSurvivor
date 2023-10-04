@@ -61,14 +61,6 @@ public class CharacterAppearance : MonoBehaviour, IPunObservable
 }
 
 [Serializable]
-public class EquipmentSlot
-{
-    public EquipmentSlotType SlotType;
-    public List<EquipmentElement> AllowedElements; 
-    public string ItemId;
-}
-
-[Serializable]
 public class AppearanceSlot
 {
     public AppearanceType AppearanceType;
