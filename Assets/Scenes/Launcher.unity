@@ -3665,6 +3665,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 811502272633787835, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1026324093289082043, guid: b419e164ab53516438da636332342da9,
         type: 3}
       propertyPath: m_IsActive
@@ -3790,6 +3795,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5602854922250251881, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5656960744997317728, guid: b419e164ab53516438da636332342da9,
         type: 3}
       propertyPath: m_IsActive
@@ -3808,6 +3818,21 @@ PrefabInstance:
     - target: {fileID: 6072992625431678581, guid: b419e164ab53516438da636332342da9,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354934708461651130, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354934708461651130, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354934708461651130, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6431133619762316591, guid: b419e164ab53516438da636332342da9,
@@ -3924,6 +3949,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025350736092786762, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025350736092786762, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025350736092786762, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -237857599313554457, guid: b419e164ab53516438da636332342da9, type: 3}

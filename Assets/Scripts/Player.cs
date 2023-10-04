@@ -6,6 +6,7 @@ using Photon.Pun;
 using Settings;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviourPunCallbacks
 {
@@ -18,6 +19,8 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private int _speed = 1;
     [SerializeField] private int _speed_rotation = 3;
     [SerializeField] private Animator _animator;
+
+    [SerializeField] private Slider _healthSlider;
 
     private bool _dead;
 
@@ -43,6 +46,23 @@ public class Player : MonoBehaviourPunCallbacks
         _animator = GetComponent<Animator>();
     }
 
+    [Button]
+    public void GetDamage(float value)
+    {
+        _parameters.Get(ParameterType.Health).Inc(-10);
+
+        if (photonView.IsMine)
+        {
+            _healthSlider.gameObject.SetActive(false);
+            UIController.Instance.HealthSlider.value = _parameters.Get(ParameterType.Health).Value;
+        }
+        else
+        {
+            _healthSlider.gameObject.SetActive(true);
+            _healthSlider.value = _parameters.Get(ParameterType.Health).Value;
+        }
+    }
+    
     void Update()
     {
         if(!photonView.IsMine)

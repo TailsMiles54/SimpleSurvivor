@@ -13,7 +13,6 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    [FormerlySerializedAs("LogText")] [SerializeField] private TMP_Text _logText;
     [SerializeField] private GameObject _playerPrefab;
 
     void Start()
@@ -65,7 +64,5 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void Log(string message)
     {
         Debug.Log(message);
-        _logText.text += "\n";
-        _logText.text += message;
     }
 }

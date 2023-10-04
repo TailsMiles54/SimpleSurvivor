@@ -11,8 +11,6 @@ namespace Settings
     public class AnimatorOverrides : SerializedScriptableObject
     {
         [field: SerializeField] public List<ClassOverrideAnimator> ClassOverrideAnimators;
-
-        public ModelImporter _ModelImporter;
     }
 
     [Serializable]
