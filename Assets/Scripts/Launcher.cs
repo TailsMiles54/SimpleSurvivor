@@ -11,12 +11,14 @@ public class Launcher : MonoBehaviourPunCallbacks
 {
     private static Launcher _instance;
     public static Launcher Instance => _instance;
+
+    public static Action ActionBeforeMasterConnect;
+    public static Action ActionBeforeMasterLeave;
     
     public async void SetupData()
     {
         _instance = this;
         PhotonNetwork.NickName = await SaveDataManager.RetrieveSpecificData("character_name");
-        PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.ConnectUsingSettings();
         DontDestroyOnLoad(gameObject);
@@ -58,6 +60,16 @@ public class Launcher : MonoBehaviourPunCallbacks
         }, null, null);
     }
 
+    public override void OnLeftLobby()
+    {
+        Log("Disconnect from lobby");
+        if (ActionBeforeMasterLeave != null)
+        {
+            ActionBeforeMasterLeave.Invoke();
+            ActionBeforeMasterLeave = null;
+        }
+    }
+
     public override void OnJoinedRoom()
     {
         Log("Joined to room");
@@ -67,13 +79,28 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(mapname);
     }
 
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Log("Disconnect");
+        if (ActionBeforeMasterLeave != null)
+        {
+            ActionBeforeMasterLeave.Invoke();
+            ActionBeforeMasterLeave = null;
+        }
+    }
+
     public override void OnConnectedToMaster()
     {
         Log("Connected to Master");
+        if (ActionBeforeMasterConnect != null)
+        {
+            ActionBeforeMasterConnect.Invoke();
+            ActionBeforeMasterConnect = null;
+        }
     }
 
     public void Log(string message)
     {
-        Debug.Log(message);
+        Debug.LogWarning(message);
     }
 }
