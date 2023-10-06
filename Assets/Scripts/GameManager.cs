@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _playerPrefab;
 
+    [SerializeField] private Transform _citySpawnPos;
+
     void Start()
     {
         if (PhotonNetwork.InRoom && Player.LocalPlayerInstance==null)
@@ -34,6 +36,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void SpawnCharacter()
     {
         var defPos = new Vector3(404.665558f, 0, 533.629211f);
+        
+        if (SceneManager.GetActiveScene().name == "City")
+        {
+            defPos = _citySpawnPos.position;
+        }
         
         PhotonNetwork.Instantiate(_playerPrefab.name,
             new Vector3(defPos.x + Random.Range(-5, 5), 0,
