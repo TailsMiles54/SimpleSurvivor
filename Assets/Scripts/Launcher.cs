@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
@@ -26,12 +25,22 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(null, new RoomOptions
+        Dictionary<string, string> roomParams = new Dictionary<string, string>()
         {
-            CustomRoomPropertiesForLobby = new string[]
-            {
-            },
-        });
+            {"mapname", "City"}
+        };
+
+        Hashtable myHash = new Hashtable();
+
+        foreach (var param in roomParams)
+        {
+            myHash.Add(param.Key, param.Value);
+        }
+        
+        PhotonNetwork.JoinOrCreateRoom("City", new RoomOptions()
+        {
+            CustomRoomProperties = myHash,
+        }, null, null);
     }
 
     public void JoinRoom() 
@@ -54,7 +63,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             myHash.Add(param.Key, param.Value);
         }
         
-        PhotonNetwork.JoinOrCreateRoom(Guid.NewGuid().ToString(), new RoomOptions()
+        PhotonNetwork.JoinOrCreateRoom(mapName, new RoomOptions()
         {
             CustomRoomProperties = myHash,
         }, null, null);
