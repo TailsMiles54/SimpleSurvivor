@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class LocationTransitionTrigger : MonoBehaviour
 {
-    [SerializeField] private string _mapName; 
+    [SerializeField] private string _mapName;
+    [SerializeField] private LocationTypes _locationType;
     
     private void OnTriggerEnter(Collider other)
     {
+        LoadingScreen.Instance.ShowLoadingScreen(_locationType);
         PhotonNetwork.LeaveLobby();
         PhotonNetwork.Disconnect();
         
@@ -18,6 +20,7 @@ public class LocationTransitionTrigger : MonoBehaviour
             Launcher.ActionBeforeMasterConnect = () =>
             {
                 Launcher.Instance.JoinOrCreateRoom(_mapName);
+                LoadingScreen.Instance.HideLoadingScreen();
             };
         };
     }

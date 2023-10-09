@@ -23,3 +23,4 @@ MonoBehaviour:
     SerializationNodes: []
   _settingsList:
   - {fileID: 11400000, guid: cbb755464af36a84685246e5f17fb838, type: 2}
+  - {fileID: 11400000, guid: 76f80410500f85c46ac2d1b3607c2fe7, type: 2}
