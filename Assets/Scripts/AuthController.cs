@@ -65,6 +65,8 @@ public class AuthController : MonoBehaviour
             }
             _lobbyPanel.SetActive(true);
             _characterPanel.SetActive(false);
+            _launcher.SetupData();
+            _characterShowedName.text = _characterName.text;
         }
     }
 

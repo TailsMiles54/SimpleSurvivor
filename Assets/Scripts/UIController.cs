@@ -15,5 +15,8 @@ public class UIController : MonoBehaviour
         _instance = this;
     }
 
-    
+    public void Close()
+    {
+        Application.Quit();
+    }
 }

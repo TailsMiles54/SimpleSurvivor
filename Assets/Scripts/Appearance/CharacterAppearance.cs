@@ -21,6 +21,7 @@ public class CharacterAppearance : MonoBehaviour, IPunObservable
                     string.Empty;
             }
             SetupAppearance();
+            LoadingScreen.Instance.HideLoadingScreen();
         }
     }
 
