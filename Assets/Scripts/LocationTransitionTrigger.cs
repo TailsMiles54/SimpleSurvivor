@@ -20,7 +20,6 @@ public class LocationTransitionTrigger : MonoBehaviour
             Launcher.ActionBeforeMasterConnect = () =>
             {
                 Launcher.Instance.JoinOrCreateRoom(_mapName);
-                LoadingScreen.Instance.HideLoadingScreen();
             };
         };
     }

@@ -41,6 +41,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             CustomRoomProperties = myHash,
         }, null, null);
+        
+        LoadingScreen.Instance.ShowLoadingScreen(LocationTypes.City);
     }
 
     public void JoinRoom() 

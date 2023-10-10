@@ -15,8 +15,11 @@ public class LoadingScreen : MonoBehaviour
     
     void Start()
     {
-        _instance = this;
-        DontDestroyOnLoad(_canvas);
+        if(_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(_canvas);
+        }
         gameObject.SetActive(false);
     }
 
