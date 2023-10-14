@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
+        Player.LocalPlayerInstance = null;
         SceneManager.LoadScene(0);
     }
 
