@@ -10,17 +10,11 @@ public class LocationTransitionTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         LoadingScreen.Instance.ShowLoadingScreen(_locationType);
-        PhotonNetwork.LeaveLobby();
-        PhotonNetwork.Disconnect();
+        PhotonNetwork.LeaveRoom();
         
-        Launcher.ActionBeforeMasterLeave = () =>
+        Launcher.ActionBeforeMasterConnect = () =>
         {
-            SceneManager.LoadScene(0);
-            PhotonNetwork.ConnectUsingSettings();
-            Launcher.ActionBeforeMasterConnect = () =>
-            {
-                Launcher.Instance.JoinOrCreateRoom(_mapName);
-            };
+            Launcher.JoinOrCreateRoom(_mapName);
         };
     }
 }

@@ -8,41 +8,22 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-    private static Launcher _instance;
-    public static Launcher Instance => _instance;
-
     public static Action ActionBeforeMasterConnect;
     public static Action ActionBeforeMasterLeave;
     
     public async void SetupData()
     {
-        _instance = this;
-        PhotonNetwork.NickName = await SaveDataManager.RetrieveSpecificData("character_name");
-        PhotonNetwork.GameVersion = "1";
-        PhotonNetwork.ConnectUsingSettings();
-        DontDestroyOnLoad(gameObject);
+        if(!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.NickName = await SaveDataManager.RetrieveSpecificData("character_name");
+            PhotonNetwork.GameVersion = "1";
+            PhotonNetwork.ConnectUsingSettings();
+        }
     }
 
     public void CreateRoom()
     {
-        Dictionary<string, string> roomParams = new Dictionary<string, string>()
-        {
-            {"mapname", "City"}
-        };
-
-        Hashtable myHash = new Hashtable();
-
-        foreach (var param in roomParams)
-        {
-            myHash.Add(param.Key, param.Value);
-        }
-        
-        PhotonNetwork.JoinOrCreateRoom("City", new RoomOptions()
-        {
-            CustomRoomProperties = myHash,
-        }, null, null);
-        
-        LoadingScreen.Instance.ShowLoadingScreen(LocationTypes.City);
+        JoinOrCreateRoom("City");
     }
 
     public void JoinRoom() 
@@ -51,7 +32,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
 
     [Button]
-    public void JoinOrCreateRoom(string mapName)
+    public static void JoinOrCreateRoom(string mapName)
     {
         Dictionary<string, string> roomParams = new Dictionary<string, string>()
         {
@@ -93,11 +74,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Log("Disconnect");
-        if (ActionBeforeMasterLeave != null)
-        {
-            ActionBeforeMasterLeave.Invoke();
-            ActionBeforeMasterLeave = null;
-        }
     }
 
     public override void OnConnectedToMaster()
