@@ -5142,6 +5142,7 @@ GameObject:
   - component: {fileID: 4127741048752567809}
   - component: {fileID: -237857599313554457}
   - component: {fileID: -2683176174289102616}
+  - component: {fileID: -6699316607596300686}
   m_Layer: 6
   m_Name: MC01
   m_TagString: Untagged
@@ -5574,6 +5575,7 @@ MonoBehaviour:
   _speed_rotation: 3
   _animator: {fileID: 7191100790416280148}
   _healthSlider: {fileID: 9025350736092786762}
+  _playerInput: {fileID: 0}
   <AvatarCamera>k__BackingField: {fileID: 6907321718465233724}
 --- !u!114 &-2683176174289102616
 MonoBehaviour:
@@ -5656,6 +5658,57 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &-6699316607596300686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8001354749718593143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7f2ea35fadc555a4f91966e7e7e49e9d,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8001354749718593143}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 278e9271-93ea-46d2-bb53-178c354c74fd
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/d,/Keyboard/s,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d4eb5e5-9819-49a8-a89b-423f22153738
+    m_ActionName: Gameplay/Trigger[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: PC
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8017519852781684414
 GameObject:
   m_ObjectHideFlags: 0

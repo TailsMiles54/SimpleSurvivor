@@ -7,6 +7,7 @@ using Photon.Pun;
 using Settings;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviourPunCallbacks
@@ -23,6 +24,8 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private Animator _animator;
 
     [SerializeField] private Slider _healthSlider;
+
+    [SerializeField] private PlayerInput _playerInput;
 
     private string _nickname;
     
@@ -60,6 +63,12 @@ public class Player : MonoBehaviourPunCallbacks
             LocalPlayerInstance = gameObject;
             PlayerInitialized?.Invoke(this);
             GetNickName();
+
+            PlayerInputActions playerInputManager = new PlayerInputActions();
+            playerInputManager.Gameplay.Enable();
+            playerInputManager.Gameplay.Movement.started += Move;
+            playerInputManager.Gameplay.Movement.canceled += Move;
+            playerInputManager.Gameplay.Movement.performed += Move;
         }
         
         _characterAppearance.LoadAppearance(photonView.IsMine);
@@ -103,14 +112,6 @@ public class Player : MonoBehaviourPunCallbacks
         
         if(!_dead)
             transform.Rotate(0, Input.GetAxis("Mouse X") * _speed_rotation, 0);
-        
-        float curSpeed = _speed * Input.GetAxis("Vertical");
-        float curHorizontalSpeed = _speed * Input.GetAxis("Horizontal");
-
-        curSpeed = Input.GetButton("Shift") ? curSpeed * 2 : curSpeed;
-        
-        _animator.SetFloat("y", curSpeed);
-        _animator.SetFloat("x", curHorizontalSpeed);
         
         if (Input.GetButtonDown("Switch weapon"))
         {
@@ -168,6 +169,23 @@ public class Player : MonoBehaviourPunCallbacks
                 boxCollider.enabled = _inAttack;
             }
         }
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        var inputVector1 = context.action.ReadValueAsObject();
+        var inputVector = context.action.ReadValue<Vector2>();
+        
+        Debug.Log(inputVector1);
+        Debug.Log(inputVector);
+        
+        float curSpeed = _speed * inputVector.y;
+        float curHorizontalSpeed = _speed * inputVector.x;
+
+        curSpeed = Input.GetButton("Shift") ? curSpeed * 2 : curSpeed;
+        
+        _animator.SetFloat("y", curSpeed);
+        _animator.SetFloat("x", curHorizontalSpeed);
     }
 
     private void SwitchWeapon()
