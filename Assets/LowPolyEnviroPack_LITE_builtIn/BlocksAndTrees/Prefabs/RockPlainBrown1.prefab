@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33265029658001540}
   - component: {fileID: 23731917455491586}
   - component: {fileID: 65511193976973196}
+  - component: {fileID: -417918837295566253}
   m_Layer: 0
   m_Name: RockPlainBrown1
   m_TagString: Untagged
@@ -105,3 +106,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1976929, y: 0.9798818, z: 1.2014072}
   m_Center: {x: -0.00000014901161, y: 0.48229495, z: 0.000000029802322}
+--- !u!64 &-417918837295566253
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625079031878956}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 8a01f2fa7e726604ba2bbe59a8ab3e58, type: 3}

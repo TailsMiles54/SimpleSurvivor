@@ -24,6 +24,11 @@ public class Player : MonoBehaviourPunCallbacks
 
     [SerializeField] private Slider _healthSlider;
 
+    private string _nickname;
+    
+    public static event Action<Player> PlayerInitialized;
+    [field: SerializeField] public Camera AvatarCamera { get; private set; } 
+
     private bool _dead;
 
     private Parameters _parameters = new Parameters(new List<Parameter>()
@@ -53,10 +58,18 @@ public class Player : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             LocalPlayerInstance = gameObject;
+            PlayerInitialized?.Invoke(this);
+            GetNickName();
         }
         
         _characterAppearance.LoadAppearance(photonView.IsMine);
         _characterEquipment.LoadAppearance(photonView.IsMine);
+    }
+
+    private async void GetNickName()
+    {
+        _nickname = await SaveDataManager.RetrieveSpecificData("character_name");
+        UIController.Instance.NickName.text = _nickname;
     }
     
     private void Awake()
