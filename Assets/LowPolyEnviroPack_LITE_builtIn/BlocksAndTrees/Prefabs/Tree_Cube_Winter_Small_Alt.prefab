@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4732505989355142}
   - component: {fileID: 33586319765942314}
   - component: {fileID: 23636155698993496}
-  - component: {fileID: 1522562266990438550}
+  - component: {fileID: -259936543526123898}
   m_Layer: 0
   m_Name: Tree_Cube_Winter_Small_Alt
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1522562266990438550
-MeshCollider:
+--- !u!136 &-259936543526123898
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 7743e2fe410517744921f9d1d30c054a, type: 3}
+  serializedVersion: 2
+  m_Radius: 4.675268
+  m_Height: 11.961254
+  m_Direction: 1
+  m_Center: {x: 0.40931225, y: 5.665208, z: -0.08238077}

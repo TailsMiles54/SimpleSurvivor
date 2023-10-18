@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4429736630640800}
   - component: {fileID: 33626012835353972}
   - component: {fileID: 23492075558956086}
-  - component: {fileID: 5978201991520665849}
+  - component: {fileID: -6346429212037939369}
   m_Layer: 0
   m_Name: Tree_Fern_Tall_Summer
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5978201991520665849
-MeshCollider:
+--- !u!136 &-6346429212037939369
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 8aed1ee6de482104398343e2285e22b8, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.66976434
+  m_Height: 2.5258257
+  m_Direction: 1
+  m_Center: {x: -0.014494568, y: 1.2495219, z: 0.005207479}

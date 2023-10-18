@@ -1374,6 +1374,7 @@ GameObject:
   - component: {fileID: 2001531999}
   - component: {fileID: 2001531998}
   - component: {fileID: 2001531997}
+  - component: {fileID: 2001532000}
   m_Layer: 0
   m_Name: Terrain (1)
   m_TagString: Untagged
@@ -1459,89 +1460,186 @@ Transform:
   - {fileID: 1495986053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2058780126
-PrefabInstance:
+--- !u!114 &2001532000
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1779909935681833571, guid: b419e164ab53516438da636332342da9,
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001531996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f710250abab6f24a954bdf3c3c1ac64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: 0
+  terrains:
+  - {fileID: 2001531998}
+  visibleTerrainsOnly: 0
+  treeTypes:
+  - enabled: 1
+    name: Tree3
+    seed: 2637
+    probability: 16.3
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: dirt_lighted_rocks_right
+      layerID: 0
+      threshold: 1
+    - name: Grass_swamp_normal_left
+      layerID: 2
+      threshold: 1
+    - name: Grass_darked_down
+      layerID: 1
+      threshold: 0
+    - name: dirt_overdesatured_right
+      layerID: 3
+      threshold: 1
+    - name: dirt_claydarked_up
+      layerID: 4
+      threshold: 1
+    instanceCount: 433
+    prefabs:
+    - index: 0
+      probability: 100
+      prefab: {fileID: 5023827496289606453, guid: a79279818571b6848a9ccb8dcb36dd2c,
         type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6354934708461651130, guid: b419e164ab53516438da636332342da9,
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
+  - enabled: 1
+    name: PineTree_E
+    seed: 6657
+    probability: 10
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: dirt_lighted_rocks_right
+      layerID: 0
+      threshold: 1
+    - name: Grass_darked_down
+      layerID: 1
+      threshold: 0
+    - name: Grass_swamp_normal_left
+      layerID: 2
+      threshold: 1
+    - name: dirt_overdesatured_right
+      layerID: 3
+      threshold: 1
+    - name: dirt_claydarked_up
+      layerID: 4
+      threshold: 1
+    instanceCount: 272
+    prefabs:
+    - index: 1
+      probability: 100
+      prefab: {fileID: 1060633215816366, guid: e12ec177aef90b24898f58270fd317e0, type: 3}
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
+  - enabled: 1
+    name: SilverBirchTreeLarge
+    seed: 8514
+    probability: 14.7
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: dirt_lighted_rocks_right
+      layerID: 0
+      threshold: 1
+    - name: Grass_darked_down
+      layerID: 1
+      threshold: 0
+    - name: Grass_swamp_normal_left
+      layerID: 2
+      threshold: 1
+    - name: dirt_overdesatured_right
+      layerID: 3
+      threshold: 1
+    - name: dirt_claydarked_up
+      layerID: 4
+      threshold: 1
+    instanceCount: 387
+    prefabs:
+    - index: 2
+      probability: 100
+      prefab: {fileID: 1806832100490324, guid: 393b72400b22928418bd19218f43a55a, type: 3}
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
+  - enabled: 1
+    name: TreeYellow3
+    seed: 45453
+    probability: 10
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: dirt_lighted_rocks_right
+      layerID: 0
+      threshold: 1
+    - name: Grass_darked_down
+      layerID: 1
+      threshold: 0
+    - name: Grass_swamp_normal_left
+      layerID: 2
+      threshold: 0
+    - name: dirt_overdesatured_right
+      layerID: 3
+      threshold: 1
+    - name: dirt_claydarked_up
+      layerID: 4
+      threshold: 1
+    instanceCount: 264
+    prefabs:
+    - index: 3
+      probability: 100
+      prefab: {fileID: 5614180682871777939, guid: 2196e66c52d25ac469e55fb8f4d54d4a,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6354934708461651130, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 269.07178
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.000005722046
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 241.9786
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7224149203388998861, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8001354749718593143, guid: b419e164ab53516438da636332342da9,
-        type: 3}
-      propertyPath: m_Name
-      value: MC01
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b419e164ab53516438da636332342da9, type: 3}
+    distance: 5
+    scaleRange: {x: 0.8, y: 1.2}
+    sinkAmount: 0
+  grassPrefabs: []
+  terrainSettings:
+    drawTreesAndFoliage: 1
+    preservePrefabLayer: 1
+    treeLightProbes: 0
+    treeDistance: 1000
+    billboardStart: 300
+    maxMeshTrees: 50
+    detailScattermode: 0
+    grassDistance: 200
+    grassDensity: 1
+    windStrength: 0.15
+    windSpeed: 1
+    windFrequency: 2
+    wintTint: {r: 1, g: 1, b: 1, a: 1}
+  cellSize: 64
+  cellDivisions: 4
+  highPrecisionCollision: 1
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  terrainMinMaxHeight: {x: -100, y: 2000}
+  detailResolution: 256
+  detailResolutionIndex: 0
+  grassPatchSize: 128
+  grassPatchSizeIndex: 4
+  tempColliders: []
+  waterHeight: 0
+  autoRespawnTrees: 1
 --- !u!1 &2085718530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,10 +1822,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2669027757647590425, guid: b3e4f5d9261703646b0fe46bdae8deef,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6352811096580826924, guid: b3e4f5d9261703646b0fe46bdae8deef,
         type: 3}
       propertyPath: m_Name
       value: '[UI]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500037447628131850, guid: b3e4f5d9261703646b0fe46bdae8deef,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8027466262067037547, guid: b3e4f5d9261703646b0fe46bdae8deef,
         type: 3}
@@ -1881,4 +1989,3 @@ SceneRoots:
   - {fileID: 2039777035699024819}
   - {fileID: 938313900}
   - {fileID: 2001531999}
-  - {fileID: 2058780126}
