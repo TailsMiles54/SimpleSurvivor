@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
@@ -69,5 +70,19 @@ public static class SaveDataManager
         }
 
         return default;
+    }
+
+    public static void SaveUserData(UserInfo userInfo)
+    {
+        var result = JsonConvert.SerializeObject(userInfo);
+        Save("user-info", result);
+    }
+
+    public static UserInfo LoadUserData()
+    {
+        var data = RetrieveSpecificData("user-info").Result;
+
+        var result = JsonConvert.DeserializeObject<UserInfo>(data);
+        return result;
     }
 }

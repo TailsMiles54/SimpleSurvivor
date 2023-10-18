@@ -24,18 +24,13 @@ public class Player : MonoBehaviourPunCallbacks
 
     [SerializeField] private Slider _healthSlider;
 
-    private string _nickname;
+    public UserInfo UserInfo;
     
     public static event Action<Player> PlayerInitialized;
     [field: SerializeField] public Camera AvatarCamera { get; private set; } 
 
     private bool _dead;
-
-    private Parameters _parameters = new Parameters(new List<Parameter>()
-    {
-        new Parameter(ParameterType.Health, 100f)
-    });
-
+    
     private List<string> _attackAnimsNames = new List<string>()
     {
         "Attack01",
@@ -60,38 +55,24 @@ public class Player : MonoBehaviourPunCallbacks
             LocalPlayerInstance = gameObject;
             PlayerInitialized?.Invoke(this);
             GetNickName();
+
+            var loadedUserInfo = SaveDataManager.LoadUserData();
+
+            UserInfo = loadedUserInfo;
         }
         
         _characterAppearance.LoadAppearance(photonView.IsMine);
         _characterEquipment.LoadAppearance(photonView.IsMine);
     }
 
-    private async void GetNickName()
+    private void GetNickName()
     {
-        _nickname = await SaveDataManager.RetrieveSpecificData("character_name");
-        UIController.Instance.NickName.text = _nickname;
+        UIController.Instance.NickName.text = UserInfo.Name;
     }
     
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-    }
-
-    [Button]
-    public void GetDamage(float value)
-    {
-        _parameters.Get(ParameterType.Health).Inc(-10);
-
-        if (photonView.IsMine)
-        {
-            _healthSlider.gameObject.SetActive(false);
-            UIController.Instance.HealthSlider.value = _parameters.Get(ParameterType.Health).Value;
-        }
-        else
-        {
-            _healthSlider.gameObject.SetActive(true);
-            _healthSlider.value = _parameters.Get(ParameterType.Health).Value;
-        }
     }
     
     void Update()
