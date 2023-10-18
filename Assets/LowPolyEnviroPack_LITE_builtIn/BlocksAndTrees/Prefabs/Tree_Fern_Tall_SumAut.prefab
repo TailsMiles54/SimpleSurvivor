@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4874127741941138}
   - component: {fileID: 33029629503218568}
   - component: {fileID: 23498030924113282}
-  - component: {fileID: -7481269675348533960}
+  - component: {fileID: 9081106683210852340}
   m_Layer: 0
   m_Name: Tree_Fern_Tall_SumAut
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-7481269675348533960
-MeshCollider:
+--- !u!136 &9081106683210852340
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 9c1b80ac22fa2794c8c3faa0fda4a3d5, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.6754669
+  m_Height: 2.370413
+  m_Direction: 1
+  m_Center: {x: 0.0013796985, y: 1.1718155, z: -0.03187725}

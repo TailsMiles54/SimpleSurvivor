@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4528539522805138}
   - component: {fileID: 33697184107614494}
   - component: {fileID: 23036479228635056}
-  - component: {fileID: 8285169114851452120}
+  - component: {fileID: -638299748841290673}
   m_Layer: 0
   m_Name: Tree_Small_F
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8285169114851452120
-MeshCollider:
+--- !u!136 &-638299748841290673
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 926d62e2ab4c8ea4eaa865d640788530, type: 3}
+  serializedVersion: 2
+  m_Radius: 3.1185093
+  m_Height: 6.1842237
+  m_Direction: 1
+  m_Center: {x: 0.47089636, y: 2.9975727, z: -0.69077873}

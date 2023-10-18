@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4075333788429468}
   - component: {fileID: 33425674304810314}
   - component: {fileID: 23646031251637534}
-  - component: {fileID: 1238560050026062125}
+  - component: {fileID: -3044545845987107271}
   m_Layer: 0
   m_Name: Tree_Cube_Winter
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1238560050026062125
-MeshCollider:
+--- !u!136 &-3044545845987107271
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b1fc4549a22793049b375cdf1b82802b, type: 3}
+  serializedVersion: 2
+  m_Radius: 1.2555853
+  m_Height: 3.4144802
+  m_Direction: 1
+  m_Center: {x: -0.0036859512, y: 1.607739, z: -0.0015282631}
