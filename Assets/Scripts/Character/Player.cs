@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using Newtonsoft.Json;
 using Photon.Pun;
 using Settings;
 using Sirenix.OdinInspector;
@@ -48,17 +49,20 @@ public class Player : MonoBehaviourPunCallbacks
     
     public static GameObject LocalPlayerInstance;
     
-    void Start()
+    async void Start()
     {
         if (photonView.IsMine)
         {
             LocalPlayerInstance = gameObject;
             PlayerInitialized?.Invoke(this);
+
+            var loadedUserInfo = await SaveDataManager.RetrieveSpecificData("user_info");
+
+            var userInfo = JsonConvert.DeserializeObject<UserInfo>(loadedUserInfo);
+            
+            UserInfo = userInfo;
             GetNickName();
-
-            var loadedUserInfo = SaveDataManager.LoadUserData();
-
-            UserInfo = loadedUserInfo;
+            UpdateLevelSlider();
         }
         
         _characterAppearance.LoadAppearance(photonView.IsMine);
@@ -73,6 +77,17 @@ public class Player : MonoBehaviourPunCallbacks
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
+
+    private void UpdateLevelSlider()
+    {
+        var mainLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel);
+        UIController.Instance.MainLevel.maxValue = mainLevel.ExpToNext;
+        UIController.Instance.MainLevel.value = mainLevel.CurrentExp;
+
+        var jobLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.JobLevel);
+        UIController.Instance.JobLevel.maxValue = mainLevel.ExpToNext;
+        UIController.Instance.JobLevel.value = jobLevel.CurrentExp;
     }
     
     void Update()
@@ -124,6 +139,15 @@ public class Player : MonoBehaviourPunCallbacks
         else if (Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+
+        if (Input.GetKey(KeyCode.T))
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                UserInfo.AddMainExp(100);
+                UpdateLevelSlider();
+            }
         }
 
         _inAttack = false;

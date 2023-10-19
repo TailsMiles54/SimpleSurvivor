@@ -10,15 +10,12 @@ public class UIController : MonoBehaviour
     public static UIController Instance => _instance; 
 
     [field: SerializeField] public Slider HealthSlider { get; private set; }
+    [field: SerializeField] public Slider MainLevel { get; private set; }
+    [field: SerializeField] public Slider JobLevel { get; private set; }
     [field: SerializeField] public TMP_Text NickName { get; private set; }
     
     void Start()
     {
         _instance = this;
-    }
-
-    public void Close()
-    {
-        Application.Quit();
     }
 }

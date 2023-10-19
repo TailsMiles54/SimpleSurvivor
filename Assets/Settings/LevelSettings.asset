@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f656948847164772849086625a8c1087, type: 3}
-  m_Name: SettingsProvider
+  m_Script: {fileID: 11500000, guid: 27a88d02b898438f9b2052a442de3da2, type: 3}
+  m_Name: LevelSettings
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,7 +21,25 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _settingsList:
-  - {fileID: 11400000, guid: cbb755464af36a84685246e5f17fb838, type: 2}
-  - {fileID: 11400000, guid: 76f80410500f85c46ac2d1b3607c2fe7, type: 2}
-  - {fileID: 11400000, guid: 7eb7675a3cb9e2a488f657df84b67889, type: 2}
+  <MainLevels>k__BackingField:
+  - MaxExp: 2000
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 1500
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  <JobLevels>k__BackingField:
+  - MaxExp: 2000
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 1500
+  - MaxExp: 150
+  - MaxExp: 150
+  - MaxExp: 150

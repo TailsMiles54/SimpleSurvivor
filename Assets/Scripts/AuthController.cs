@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
@@ -58,15 +59,27 @@ public class AuthController : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(_characterName.text))
         {
-            SaveDataManager.Save("character_name", _characterName.text);
             foreach (var appearanceSlot in _characterAppearance.AppearanceSlots)
             {
                 SaveDataManager.Save(appearanceSlot.AppearanceType.ToString(), appearanceSlot.ItemId);
             }
             _lobbyPanel.SetActive(true);
             _characterPanel.SetActive(false);
-            _launcher.SetupData();
+            _launcher.SetupData(_characterName.text);
             _characterShowedName.text = _characterName.text;
+            
+            var userInfo = new UserInfo(new Wallet()
+            {
+                    
+            }, _characterName.text, new Levels(new List<Level>()
+            {
+                new Level(LevelType.MainLevel),
+                new Level(LevelType.JobLevel)
+            }), new Parameters(new List<Parameter>()
+            {
+                new Parameter(ParameterType.Health, 100)
+            }));
+            SaveDataManager.SaveUserData(userInfo);
         }
     }
 
@@ -78,16 +91,19 @@ public class AuthController : MonoBehaviour
             _authPanel.SetActive(false);
             _characterAppearance.LoadAppearance();
             
-            if (string.IsNullOrEmpty(await SaveDataManager.RetrieveSpecificData("character_name")))
+            var loadedUserInfo = await SaveDataManager.RetrieveSpecificData("user_info");
+            var userInfo = loadedUserInfo != null ? JsonConvert.DeserializeObject<UserInfo>(loadedUserInfo) : null;
+            
+            if (string.IsNullOrEmpty(userInfo?.Name))
             {
                 _lobbyPanel.SetActive(false);
                 _characterPanel.SetActive(true);
             }
             else
             {
-                _characterShowedName.text = await SaveDataManager.RetrieveSpecificData("character_name");
+                _characterShowedName.text = userInfo.Name;
                 _lobbyPanel.SetActive(true);
-                _launcher.SetupData();
+                _launcher.SetupData(userInfo.Name);
                 _characterPanel.SetActive(false);
             }
         };

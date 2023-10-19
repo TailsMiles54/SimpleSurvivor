@@ -75,14 +75,6 @@ public static class SaveDataManager
     public static void SaveUserData(UserInfo userInfo)
     {
         var result = JsonConvert.SerializeObject(userInfo);
-        Save("user-info", result);
-    }
-
-    public static UserInfo LoadUserData()
-    {
-        var data = RetrieveSpecificData("user-info").Result;
-
-        var result = JsonConvert.DeserializeObject<UserInfo>(data);
-        return result;
+        Save("user_info", result);
     }
 }

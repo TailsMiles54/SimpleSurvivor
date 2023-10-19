@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
+using Newtonsoft.Json;
 using Photon.Pun;
 using Photon.Realtime;
 using Sirenix.OdinInspector;
@@ -11,11 +12,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     public static Action ActionBeforeMasterConnect;
     public static Action ActionBeforeMasterLeave;
     
-    public async void SetupData()
+    public void SetupData(string nickname)
     {
         if(!PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.NickName = await SaveDataManager.RetrieveSpecificData("character_name");
+            PhotonNetwork.NickName = nickname;
             PhotonNetwork.GameVersion = "1";
             PhotonNetwork.ConnectUsingSettings();
         }
