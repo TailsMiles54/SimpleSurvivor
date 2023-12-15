@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         var defPos = new Vector3(260 ,0 ,240);
         
-        if (SceneManager.GetActiveScene().name == "City")
+        if (_citySpawnPos != null)
         {
             defPos = _citySpawnPos.position;
         }

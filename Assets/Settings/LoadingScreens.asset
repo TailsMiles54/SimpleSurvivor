@@ -38,3 +38,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4faf7f41378d04047a3311fd512ebd07, type: 3}
     - {fileID: 21300000, guid: 3a5aca0d2d554614595dc67c2329c026, type: 3}
     - {fileID: 21300000, guid: 9e6de7df331938e4c95cde3cedd6fdac, type: 3}
+  - Location: 2
+    Backgrounds:
+    - {fileID: 21300000, guid: 8598568f32044274cbd4c585fcd8bb0a, type: 3}
+    - {fileID: 21300000, guid: 4faf7f41378d04047a3311fd512ebd07, type: 3}

@@ -205,10 +205,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2669027757647590425, guid: b3e4f5d9261703646b0fe46bdae8deef,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6352811096580826924, guid: b3e4f5d9261703646b0fe46bdae8deef,
         type: 3}
       propertyPath: m_Name
       value: '[UI]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500037447628131850, guid: b3e4f5d9261703646b0fe46bdae8deef,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8027466262067037547, guid: b3e4f5d9261703646b0fe46bdae8deef,
         type: 3}
@@ -1503,7 +1513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a6da4d6612a17448be0948b170d7f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapName: SampleScene
+  _mapName: Arena1
+  _locationType: 2
 --- !u!65 &687049655
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6,4 +6,5 @@ public enum LocationTypes
 {
    City,
    Meadow,
+   Arena1
 }
