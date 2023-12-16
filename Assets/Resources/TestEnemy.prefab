@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2952169407038396209}
   - component: {fileID: -9111170489781543084}
   - component: {fileID: 5603621960071586260}
+  - component: {fileID: -7793262462756664763}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -199,3 +200,15 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-7793262462756664763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943711631956657227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2449f1dfba4a4c445bcd70f9647fb1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -37,8 +37,8 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
                         if(spawnPosition != new Vector3())
                         {
                             var enemy = PhotonNetwork.Instantiate(_testEnemyPrefab.name, spawnPosition, Quaternion.identity);
-                            var navMeshAgent = enemy.GetComponent<NavMeshAgent>();
-                            navMeshAgent.SetDestination(player.transform.position);
+                            var navMeshAgent = enemy.GetComponent<TestEnemyController>();
+                            navMeshAgent.SetTarget(player);
                             yield return new WaitForSeconds(1f);
                         }
                     }
