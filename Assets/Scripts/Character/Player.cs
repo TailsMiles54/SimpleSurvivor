@@ -92,25 +92,26 @@ public class Player : MonoBehaviourPunCallbacks
         UIController.Instance.JobLevel.value = jobLevel.CurrentExp;
     }
     
-    public float ThetaScale = 0.01f;
-    public float radius = 3f;
-    private int Size;
-    private float Theta = 0f;
-    
     void OnDrawGizmos()
     {
+        float thetaScale = 0.01f;
+        int size;
+        float theta = 0f;
+        
+        var spawnSettings = SettingsProvider.Get<SpawnSettings>();
+        
         Gizmos.color = Color.red;
         
-        Theta = 0f;
-        Size = (int)(1f / ThetaScale);
+        theta = 0f;
+        size = (int)(1f / thetaScale);
 
         List<Vector3> points = new List<Vector3>();
         
-        for (int i = 0; i < Size; i++)
+        for (int i = 0; i < size; i++)
         {
-            Theta += (2.0f * Mathf.PI * ThetaScale);
-            float x = radius * Mathf.Cos(Theta);
-            float z = radius * Mathf.Sin(Theta);
+            theta += (2.0f * Mathf.PI * thetaScale);
+            float x = spawnSettings.MinRadius * Mathf.Cos(theta);
+            float z = spawnSettings.MinRadius * Mathf.Sin(theta);
             var point = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
             points.Add(point);
         }
@@ -121,14 +122,14 @@ public class Player : MonoBehaviourPunCallbacks
         
         Gizmos.color = Color.blue;
         
-        Theta = 0f;
-        Size = (int)(1f / ThetaScale);
+        theta = 0f;
+        size = (int)(1f / thetaScale);
         
-        for (int i = 0; i < Size; i++)
+        for (int i = 0; i < size; i++)
         {
-            Theta += (2.0f * Mathf.PI * ThetaScale);
-            float x = 6 * Mathf.Cos(Theta);
-            float z = 6 * Mathf.Sin(Theta);
+            theta += (2.0f * Mathf.PI * thetaScale);
+            float x = spawnSettings.MaxRadius * Mathf.Cos(theta);
+            float z = spawnSettings.MaxRadius * Mathf.Sin(theta);
             var point = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
             points.Add(point);
         }

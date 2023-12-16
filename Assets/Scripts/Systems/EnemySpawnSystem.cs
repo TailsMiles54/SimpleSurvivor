@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemySpawnSystem : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject _build;
+    [SerializeField] private GameObject _target;
     [SerializeField] private GameObject _testEnemyPrefab;
     
     private void Start()
@@ -21,7 +21,7 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
             {
                 var enemy = PhotonNetwork.Instantiate(_testEnemyPrefab.name, GetRandomSpawnPosition(), Quaternion.identity);
                 var navMeshAgent = enemy.GetComponent<NavMeshAgent>();
-                navMeshAgent.SetDestination(_build.transform.position);
+                navMeshAgent.SetDestination(_target.transform.position);
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -36,6 +36,6 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
 
         var test = new Vector3(vec.x, vec.z, vec.y);
         
-        return _build.transform.position + test;
+        return _target.transform.position + test;
     }
 }
