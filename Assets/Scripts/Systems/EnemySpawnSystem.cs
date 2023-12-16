@@ -7,7 +7,6 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _build;
     [SerializeField] private GameObject _testEnemyPrefab;
-    [SerializeField] private Transform _enemiesParent;
     
     private void Start()
     {

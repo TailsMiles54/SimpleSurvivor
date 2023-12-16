@@ -7,8 +7,10 @@ using Newtonsoft.Json;
 using Photon.Pun;
 using Settings;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using SettingsProvider = Settings.SettingsProvider;
 
 public class Player : MonoBehaviourPunCallbacks
 {
@@ -88,6 +90,51 @@ public class Player : MonoBehaviourPunCallbacks
         var jobLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.JobLevel);
         UIController.Instance.JobLevel.maxValue = mainLevel.ExpToNext;
         UIController.Instance.JobLevel.value = jobLevel.CurrentExp;
+    }
+    
+    public float ThetaScale = 0.01f;
+    public float radius = 3f;
+    private int Size;
+    private float Theta = 0f;
+    
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        
+        Theta = 0f;
+        Size = (int)(1f / ThetaScale);
+
+        List<Vector3> points = new List<Vector3>();
+        
+        for (int i = 0; i < Size; i++)
+        {
+            Theta += (2.0f * Mathf.PI * ThetaScale);
+            float x = radius * Mathf.Cos(Theta);
+            float z = radius * Mathf.Sin(Theta);
+            var point = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+            points.Add(point);
+        }
+        
+        Gizmos.DrawLineList(points.ToArray()); 
+        
+        points.Clear();
+        
+        Gizmos.color = Color.blue;
+        
+        Theta = 0f;
+        Size = (int)(1f / ThetaScale);
+        
+        for (int i = 0; i < Size; i++)
+        {
+            Theta += (2.0f * Mathf.PI * ThetaScale);
+            float x = 6 * Mathf.Cos(Theta);
+            float z = 6 * Mathf.Sin(Theta);
+            var point = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+            points.Add(point);
+        }
+        
+        Gizmos.DrawLineList(points.ToArray()); 
+
     }
     
     void Update()

@@ -5575,6 +5575,8 @@ MonoBehaviour:
   _animator: {fileID: 7191100790416280148}
   _healthSlider: {fileID: 9025350736092786762}
   <AvatarCamera>k__BackingField: {fileID: 6907321718465233724}
+  ThetaScale: 0.01
+  radius: 3
 --- !u!114 &-2683176174289102616
 MonoBehaviour:
   m_ObjectHideFlags: 0
