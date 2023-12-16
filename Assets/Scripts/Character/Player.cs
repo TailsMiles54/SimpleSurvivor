@@ -27,6 +27,8 @@ public class Player : MonoBehaviourPunCallbacks
 
     [SerializeField] private Slider _healthSlider;
 
+    [SerializeField] private ParticleSystem _smokePuff; 
+
     public UserInfo UserInfo;
     
     public static event Action<Player> PlayerInitialized;
@@ -240,6 +242,8 @@ public class Player : MonoBehaviourPunCallbacks
     private void Roll()
     {
         _animator.SetTrigger("Roll");
+        _smokePuff.startDelay = 0.1f;
+        _smokePuff.Play();
     }
     
     [Button("AttackCombo"), HorizontalGroup("Attacks")]
