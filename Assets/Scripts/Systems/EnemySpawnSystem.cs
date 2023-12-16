@@ -1,12 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
+using Settings;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemySpawnSystem : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject _target;
     [SerializeField] private GameObject _testEnemyPrefab;
+
+    private SpawnSettings SpawnSettings => SettingsProvider.Get<SpawnSettings>();
     
     private void Start()
     {
@@ -15,27 +20,45 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
 
     private IEnumerator SpawnEnemies()
     {
-        for (int i = 0; i < 100; i++)
+        if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.IsMasterClient)
+            yield return new WaitForSeconds(10f); //ожидание начала
+
+            for (int j = 0; j < 10; j++) //волны
             {
-                var enemy = PhotonNetwork.Instantiate(_testEnemyPrefab.name, GetRandomSpawnPosition(), Quaternion.identity);
-                var navMeshAgent = enemy.GetComponent<NavMeshAgent>();
-                navMeshAgent.SetDestination(_target.transform.position);
-                yield return new WaitForSeconds(1f);
+                var players = PhotonNetwork.FindGameObjectsWithComponent(typeof(Player))
+                    .Select(x => x.GetComponent<Player>()).ToList();
+                foreach (var player in players)
+                {
+                    for (int i = 0; i < 20; i++) //кол-во противников
+                    {
+                        var spawnPosition = GetRandomSpawnPosition(player, players);
+                        
+                        if(spawnPosition != new Vector3())
+                        {
+                            var enemy = PhotonNetwork.Instantiate(_testEnemyPrefab.name, spawnPosition, Quaternion.identity);
+                            var navMeshAgent = enemy.GetComponent<NavMeshAgent>();
+                            navMeshAgent.SetDestination(player.transform.position);
+                            yield return new WaitForSeconds(1f);
+                        }
+                    }
+
+                }
             }
         }
     }
     
-    public Vector3 GetRandomSpawnPosition()
+    private Vector3 GetRandomSpawnPosition(Player player, List<Player> players)
     {
-        int x = Random.Range(0, 2) > 0 ? Random.Range(15, 17) : Random.Range(33, 35);
-        int z = Random.Range(0, 2) > 0 ? Random.Range(18, 20) : Random.Range(29, 33);
+        Vector3 vec = Random.insideUnitCircle.normalized * SpawnSettings.SpawnRadius;
         
-        Vector3 vec = Random.insideUnitCircle.normalized * 40;
+        var pos = new Vector3(vec.x, vec.z, vec.y);
 
-        var test = new Vector3(vec.x, vec.z, vec.y);
+        if (players.Any(x => Vector3.Distance(pos, x.transform.position) < SpawnSettings.MinRadius))
+        {
+            return new Vector3();
+        }
         
-        return _target.transform.position + test;
+        return player.transform.position + pos;
     }
 }

@@ -7,6 +7,6 @@ namespace Settings
     public class SpawnSettings : SerializedScriptableObject
     {
         [field: SerializeField] public float MinRadius { get; private set; }
-        [field: SerializeField] public float MaxRadius { get; private set; }
+        [field: SerializeField] public float SpawnRadius { get; private set; }
     }
 }

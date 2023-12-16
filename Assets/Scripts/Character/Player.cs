@@ -128,8 +128,8 @@ public class Player : MonoBehaviourPunCallbacks
         for (int i = 0; i < size; i++)
         {
             theta += (2.0f * Mathf.PI * thetaScale);
-            float x = spawnSettings.MaxRadius * Mathf.Cos(theta);
-            float z = spawnSettings.MaxRadius * Mathf.Sin(theta);
+            float x = spawnSettings.SpawnRadius * Mathf.Cos(theta);
+            float z = spawnSettings.SpawnRadius * Mathf.Sin(theta);
             var point = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
             points.Add(point);
         }
