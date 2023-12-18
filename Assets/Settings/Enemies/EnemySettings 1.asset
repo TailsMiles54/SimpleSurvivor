@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f656948847164772849086625a8c1087, type: 3}
-  m_Name: SettingsProvider
+  m_Script: {fileID: 11500000, guid: 90e5c6e54bd24a2aa1b239bd148bebc4, type: 3}
+  m_Name: EnemySettings 1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,9 +21,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _settingsList:
-  - {fileID: 11400000, guid: cbb755464af36a84685246e5f17fb838, type: 2}
-  - {fileID: 11400000, guid: 76f80410500f85c46ac2d1b3607c2fe7, type: 2}
-  - {fileID: 11400000, guid: 7eb7675a3cb9e2a488f657df84b67889, type: 2}
-  - {fileID: 11400000, guid: cfe615f3a887f7c44b29bbbee7058886, type: 2}
-  - {fileID: 11400000, guid: c5565242da6b490459f8c99de29e0ac9, type: 2}
+  <EnemyType>k__BackingField: 0
+  <EnemyPrefab>k__BackingField: {fileID: 5122791751604650877, guid: 9540b37624f44ab092e166a9bc78d58c,
+    type: 3}

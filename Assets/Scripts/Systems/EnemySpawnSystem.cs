@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Enemies;
 using Photon.Pun;
 using Settings;
 using Sirenix.Utilities;
@@ -24,27 +25,37 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
         {
             yield return new WaitForSeconds(10f); //ожидание начала
 
-            for (int j = 0; j < 10; j++) //волны
+            var waves = SpawnSettings.WaveSpawnSettingsList;
+
+            var enemiesSettings = SettingsProvider.Get<EnemiesSetting>();
+            
+            foreach (var wave in waves)
             {
-                var players = PhotonNetwork.FindGameObjectsWithComponent(typeof(Player))
-                    .Select(x => x.GetComponent<Player>()).ToList();
+                var players = PhotonNetwork.FindGameObjectsWithComponent(typeof(Player)).Select(x => x.GetComponent<Player>()).ToList();
                 foreach (var player in players)
                 {
-                    for (int i = 0; i < 20; i++) //кол-во противников
+                    foreach (var enemySpawnSetting in wave.EnemiesSpawnSettings)
                     {
-                        var spawnPosition = GetRandomSpawnPosition(player, players);
-                        
-                        if(spawnPosition != new Vector3())
+                        for (int i = 0; i != enemySpawnSetting.EnemyCount; i++)
                         {
-                            var enemy = PhotonNetwork.Instantiate(_testEnemyPrefab.name, spawnPosition, Quaternion.identity);
-                            var navMeshAgent = enemy.GetComponent<TestEnemyController>();
-                            navMeshAgent.SetTarget(player);
-                            yield return new WaitForSeconds(1f);
+                            var spawnPosition = GetRandomSpawnPosition(player, players);
+                        
+                            if(spawnPosition != new Vector3())
+                            {
+                                var enemySetting = enemiesSettings.GetEnemyByType(enemySpawnSetting.EnemyTypes);
+                                
+                                var enemy = PhotonNetwork.Instantiate(enemySetting.EnemyPrefab.name, spawnPosition, Quaternion.identity);
+                                var navMeshAgent = enemy.GetComponent<TestEnemyController>();
+                                var baseEnemy = enemy.GetComponent<BaseEnemy>();
+                                baseEnemy.EnemyData = new EnemyData(enemySpawnSetting.EnemyTypes, 2, 5, 100);
+                                navMeshAgent.SetTarget(player);
+                                yield return new WaitForSeconds(wave.EnemySpawnDelay);
+                            }
                         }
                     }
-
                 }
             }
+            
         }
     }
     

@@ -3935,6 +3935,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6704045911607714422, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704045911607714422, guid: b419e164ab53516438da636332342da9,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6737617003957645690, guid: b419e164ab53516438da636332342da9,
         type: 3}
       propertyPath: m_IsActive

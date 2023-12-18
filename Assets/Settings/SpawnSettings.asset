@@ -23,3 +23,28 @@ MonoBehaviour:
     SerializationNodes: []
   <MinRadius>k__BackingField: 20
   <SpawnRadius>k__BackingField: 40
+  <WaveSpawnSettingsList>k__BackingField:
+  - EnemiesSpawnSettings:
+    - EnemyTypes: 0
+      EnemyCount: 10
+    - EnemyTypes: 9
+      EnemyCount: 10
+    - EnemyTypes: 8
+      EnemyCount: 10
+    EnemySpawnDelay: 1
+  - EnemiesSpawnSettings:
+    - EnemyTypes: 9
+      EnemyCount: 10
+    - EnemyTypes: 8
+      EnemyCount: 10
+    - EnemyTypes: 3
+      EnemyCount: 10
+    EnemySpawnDelay: 0.7
+  - EnemiesSpawnSettings:
+    - EnemyTypes: 8
+      EnemyCount: 10
+    - EnemyTypes: 3
+      EnemyCount: 10
+    - EnemyTypes: 6
+      EnemyCount: 10
+    EnemySpawnDelay: 0.4
