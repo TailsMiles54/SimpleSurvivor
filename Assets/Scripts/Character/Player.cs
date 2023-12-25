@@ -71,6 +71,8 @@ public class Player : MonoBehaviourPunCallbacks
         
         _characterAppearance.LoadAppearance(photonView.IsMine);
         _characterEquipment.LoadAppearance(photonView.IsMine);
+
+        SwitchWeapon();
     }
 
     private void GetNickName()
@@ -227,8 +229,7 @@ public class Player : MonoBehaviourPunCallbacks
 
     private void SwitchWeapon()
     {
-        _animator.runtimeAnimatorController = SettingsProvider.Get<AnimatorOverrides>().ClassOverrideAnimators
-            .First(x => x.Class == _currentClass).AnimatorOverrideController;
+        _animator.runtimeAnimatorController = SettingsProvider.Get<AnimatorOverrides>().ClassOverrideAnimators.First(x => x.Class == _currentClass).AnimatorOverrideController;
     }
 
     private void Jump()

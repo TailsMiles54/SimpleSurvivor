@@ -28,7 +28,8 @@ MonoBehaviour:
   - Class: 1
     AnimatorOverrideController: {fileID: 0}
   - Class: 2
-    AnimatorOverrideController: {fileID: 0}
+    AnimatorOverrideController: {fileID: 22100000, guid: cfbbf0b71607f824d816dda0161d673d,
+      type: 2}
   - Class: 3
     AnimatorOverrideController: {fileID: 0}
   - Class: 4

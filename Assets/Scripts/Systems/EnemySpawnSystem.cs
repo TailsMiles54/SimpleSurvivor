@@ -45,7 +45,7 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
                                 var enemySetting = enemiesSettings.GetEnemyByType(enemySpawnSetting.EnemyTypes);
                                 
                                 var enemy = PhotonNetwork.Instantiate(enemySetting.EnemyPrefab.name, spawnPosition, Quaternion.identity);
-                                var navMeshAgent = enemy.GetComponent<TestEnemyController>();
+                                var navMeshAgent = enemy.GetComponent<TestEnemy>();
                                 var baseEnemy = enemy.GetComponent<BaseEnemy>();
                                 baseEnemy.EnemyData = new EnemyData(enemySpawnSetting.EnemyTypes, 2, 5, 100);
                                 navMeshAgent.SetTarget(player);
