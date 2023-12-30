@@ -141,6 +141,12 @@ public class Player : MonoBehaviourPunCallbacks
         Gizmos.DrawLineList(points.ToArray()); 
 
     }
+
+    public void AddXp(int xp)
+    {
+        UserInfo.AddMainExp(xp);
+        UpdateLevelSlider();
+    }
     
     void Update()
     {
@@ -191,15 +197,6 @@ public class Player : MonoBehaviourPunCallbacks
         else if (Input.GetButtonDown("Jump"))
         {
             Jump();
-        }
-
-        if (Input.GetKey(KeyCode.T))
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                UserInfo.AddMainExp(100);
-                UpdateLevelSlider();
-            }
         }
 
         _inAttack = false;

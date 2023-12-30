@@ -16,6 +16,8 @@ public class MagicShot : SpellBase
             var test = Instantiate(SpellPrefab, transform);
             test.transform.parent = null;
             var test1 = test.GetComponent<Rigidbody>();
+            var test2 = test.GetComponent<SpellColider>();
+            test2.Setup(Parent, 3f);
             
             var direction = Random.insideUnitCircle.normalized;
             var vector = direction * 10;

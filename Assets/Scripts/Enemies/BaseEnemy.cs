@@ -26,11 +26,13 @@ namespace Enemies
         
         public bool TakeDamage(float damage)
         {
+            Debug.Log(Health);
             Health -= damage;
 
             if (Health <= 0)
                 return true;
 
+            Debug.Log(Health);
             return false;
         } 
     }

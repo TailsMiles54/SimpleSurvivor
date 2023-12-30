@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpellBase : MonoBehaviour
 {
+    public Player Parent;
     [SerializeField] private int _level;
     public bool Active { get; private set; }
     [field: SerializeField] public GameObject SpellPrefab { get; private set; }
