@@ -9,5 +9,8 @@ namespace Settings
     {
         [field: SerializeField] public EnemyTypes EnemyType { get; private set; }
         [field: SerializeField] public GameObject EnemyPrefab { get; private set; }
+        [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public float Damage { get; private set; }
+        [field: SerializeField] public float Health { get; private set; }
     }
 }
