@@ -32,6 +32,7 @@ MonoBehaviour:
     - EnemyTypes: 8
       EnemyCount: 10
     EnemySpawnDelay: 1
+    WaitToNextWave: 10
   - EnemiesSpawnSettings:
     - EnemyTypes: 9
       EnemyCount: 10
@@ -40,6 +41,7 @@ MonoBehaviour:
     - EnemyTypes: 3
       EnemyCount: 10
     EnemySpawnDelay: 0.7
+    WaitToNextWave: 8
   - EnemiesSpawnSettings:
     - EnemyTypes: 8
       EnemyCount: 10
@@ -48,3 +50,4 @@ MonoBehaviour:
     - EnemyTypes: 6
       EnemyCount: 10
     EnemySpawnDelay: 0.4
+    WaitToNextWave: 7

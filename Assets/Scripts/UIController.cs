@@ -13,6 +13,9 @@ public class UIController : MonoBehaviour
     [field: SerializeField] public Slider MainLevel { get; private set; }
     [field: SerializeField] public Slider JobLevel { get; private set; }
     [field: SerializeField] public TMP_Text NickName { get; private set; }
+    [field: SerializeField] public TMP_Text LevelText { get; private set; }
+    [field: SerializeField] public TMP_Text Timer { get; private set; }
+    [field: SerializeField] public TMP_Text Killed { get; private set; }
     
     void Start()
     {

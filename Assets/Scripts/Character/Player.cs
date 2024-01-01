@@ -90,6 +90,7 @@ public class Player : MonoBehaviourPunCallbacks
         var mainLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel);
         UIController.Instance.MainLevel.maxValue = mainLevel.ExpToNext;
         UIController.Instance.MainLevel.value = mainLevel.CurrentExp;
+        UIController.Instance.LevelText.text = $"Lv: {UserInfo.Level}";
 
         var jobLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.JobLevel);
         UIController.Instance.JobLevel.maxValue = mainLevel.ExpToNext;

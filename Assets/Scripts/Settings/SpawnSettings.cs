@@ -19,6 +19,7 @@ namespace Settings
     {
         public List<EnemySpawnSetting> EnemiesSpawnSettings;
         public float EnemySpawnDelay;
+        public float WaitToNextWave;
     }
 
     [Serializable]

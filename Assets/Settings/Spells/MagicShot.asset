@@ -12,6 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b862236cb4196c4ba6011ad548545bb, type: 3}
   m_Name: MagicShot
   m_EditorClassIdentifier: 
-  <MaxLevel>k__BackingField: 0
   <SpellTypes>k__BackingField: 0
-  <SpellLevelSettings>k__BackingField: []
+  <SpellLevelSettings>k__BackingField:
+  - BaseDamage: 10
+    Speed: 10
+    Duration: 3
+    Cooldown: 2
+    PoolLimit: 1
+    Amount: 1
+    Pierce: 1
+  - BaseDamage: 13
+    Speed: 13
+    Duration: 4
+    Cooldown: 1.8
+    PoolLimit: 1
+    Amount: 1
+    Pierce: 1
+  - BaseDamage: 13
+    Speed: 13
+    Duration: 4
+    Cooldown: 1.8
+    PoolLimit: 2
+    Amount: 2
+    Pierce: 1
+  - BaseDamage: 15
+    Speed: 15
+    Duration: 5
+    Cooldown: 1.7
+    PoolLimit: 2
+    Amount: 2
+    Pierce: 1
+  - BaseDamage: 15
+    Speed: 15
+    Duration: 5
+    Cooldown: 1.7
+    PoolLimit: 2
+    Amount: 2
+    Pierce: 2

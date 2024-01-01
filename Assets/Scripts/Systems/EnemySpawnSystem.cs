@@ -4,9 +4,7 @@ using System.Linq;
 using Enemies;
 using Photon.Pun;
 using Settings;
-using Sirenix.Utilities;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemySpawnSystem : MonoBehaviourPunCallbacks
 {
@@ -23,6 +21,7 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            StartCoroutine(StartTimer("До начала: {0}", 10));
             yield return new WaitForSeconds(10f); //ожидание начала
 
             var waves = SpawnSettings.WaveSpawnSettingsList;
@@ -31,6 +30,7 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
             
             foreach (var wave in waves)
             {
+                UIController.Instance.Timer.text = $"Волна: {waves.IndexOf(wave)+1}";
                 var players = PhotonNetwork.FindGameObjectsWithComponent(typeof(Player)).Select(x => x.GetComponent<Player>()).ToList();
                 foreach (var player in players)
                 {
@@ -54,8 +54,20 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
                         }
                     }
                 }
+                StartCoroutine(StartTimer("До начала волны: {0}", Mathf.RoundToInt(wave.WaitToNextWave)));
+                yield return new WaitForSeconds(wave.WaitToNextWave); //ожидание начала
             }
             
+        }
+    }
+
+    private IEnumerator StartTimer(string text, int seconds)
+    {
+        while (seconds > 0)
+        {
+            UIController.Instance.Timer.text = string.Format(text, seconds);
+            yield return new WaitForSeconds(1);
+            seconds--;
         }
     }
     
