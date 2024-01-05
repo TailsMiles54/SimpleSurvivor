@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _playerPrefab;
 
     [SerializeField] private Transform _citySpawnPos;
-
     void Start()
     {
         if (PhotonNetwork.InRoom && Player.LocalPlayerInstance==null)

@@ -9,6 +9,7 @@ namespace Settings.Spells
     {
         public int MaxLevel => SpellLevelSettings.Count;
         [field: SerializeField] public SpellTypes SpellTypes { get; private set; }
+        [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public List<SpellLevelSetting> SpellLevelSettings { get; private set; }
     }
 

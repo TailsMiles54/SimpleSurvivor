@@ -199,6 +199,18 @@ public class Player : MonoBehaviourPunCallbacks
         {
             Jump();
         }
+        else if (Input.GetButtonDown("Upgrade"))
+        {
+            if(UserInfo.UpgradeSpellPoints.Count != 0)
+            {
+                var spells = UserInfo.UpgradeSpellPoints.First();
+                PopupController.Instance.ShowPopup(new LevelRewardPopupSettings()
+                {
+                    Spells = spells
+                });
+                
+            }
+        }
 
         _inAttack = false;
         

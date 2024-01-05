@@ -653,6 +653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyData:
     <EnemyType>k__BackingField: 6
+    Parent: {fileID: 0}
 --- !u!195 &710407074749938442
 NavMeshAgent:
   m_ObjectHideFlags: 0
