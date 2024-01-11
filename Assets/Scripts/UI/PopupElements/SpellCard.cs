@@ -1,4 +1,5 @@
 using System;
+using Enums;
 using Settings;
 using TMPro;
 using UnityEngine;
@@ -9,9 +10,13 @@ public class SpellCard : MonoBehaviour
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private Image _spellIcon;
     [SerializeField] private TMP_Text _spellUpdateText;
+    [SerializeField] private Button _button;
+    [SerializeField] private GameObject _selectBorder;
     
-    public void Setup(SpellTypes spell, int currentLevel)
+    public void Setup(SpellTypes spell, int currentLevel, Action action)
     {
+        _button.onClick.AddListener(action.Invoke);
+        
         var settings = SettingsProvider.Get<SpellsSettings>().GetSpell(spell);
         _nameText.text = settings.SpellTypes.ToString();
         _spellIcon.sprite = settings.Icon;
@@ -29,5 +34,10 @@ public class SpellCard : MonoBehaviour
         if(spellStats[currentLevel].Pierce != spellStats[currentLevel+1].Pierce){ updateSpellText += $"Pierce: {spellStats[currentLevel].Pierce} => <color=green>{spellStats[currentLevel+1].Pierce}</color>\n";} 
         
         _spellUpdateText.text = updateSpellText;
+    }
+
+    public void SetActive(bool state)
+    {
+        _selectBorder.SetActive(state);
     }
 }

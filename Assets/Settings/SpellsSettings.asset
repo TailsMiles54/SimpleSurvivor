@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TotalSpellsOnCharacter>k__BackingField: 6
   <SpellSettings>k__BackingField:
+  - {fileID: 11400000, guid: 28500fd377de3a6409d3064143cfd3e9, type: 2}
+  - {fileID: 11400000, guid: 374e8bb69fe195f4eb4ed6e8edf62dae, type: 2}
+  - {fileID: 11400000, guid: a2b512af294da8c4b8f6b038ee7086be, type: 2}
+  - {fileID: 11400000, guid: 162dee6d522029d4e98462113cc6f80c, type: 2}
   - {fileID: 11400000, guid: 3d3330cf3f613d94bb783acd2331e23f, type: 2}
+  - {fileID: 11400000, guid: 5e01f115d0e0e42478bda1b68538898d, type: 2}
+  - {fileID: 11400000, guid: 943b7ef60bed1ad49ad9c4bbbc62fea8, type: 2}

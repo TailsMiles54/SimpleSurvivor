@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,7 +12,15 @@ namespace Settings
         
         public T GetPopup<T>() where T : BasePopup
         {
-            return (T)_popups.First(x => x is T);
+            try
+            {
+                return (T)_popups.First(x => x is T);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(typeof(T));
+                throw;
+            }
         }
     }
 }

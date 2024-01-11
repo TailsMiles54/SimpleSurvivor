@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 public class SpellBase : MonoBehaviour
@@ -9,6 +7,7 @@ public class SpellBase : MonoBehaviour
     [SerializeField] private int _level;
     public bool Active { get; private set; }
     [field: SerializeField] public GameObject SpellPrefab { get; private set; }
+    [field: SerializeField] public SpellTypes SpellType { get; private set; }
 
     private void LevelUp()
     {
