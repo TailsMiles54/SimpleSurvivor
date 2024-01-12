@@ -41,18 +41,7 @@ public class LevelRewardPopup : Popup<LevelRewardPopupSettings>
     {
         if (_selectedSpellType != null)
         {
-            if (_player.UserInfo.UserSpellsData.Any(x => x.SpellTypes == _selectedSpellType))
-            {
-                _player.UserInfo.UserSpellsData.First(x => _selectedSpellType == x.SpellTypes).CurrentLevel++;
-            }
-            else
-            {
-                _player.UserInfo.UserSpellsData.Add(new SpellData()
-                {
-                    SpellTypes = _selectedSpellType,
-                    CurrentLevel = 1
-                });
-            }
+            _player.UserInfo.SpellUp(_selectedSpellType);
             PopupController.Instance.HidePopup();
         }
     }

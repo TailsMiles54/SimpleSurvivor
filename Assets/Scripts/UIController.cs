@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
     [field: SerializeField] public TMP_Text Timer { get; private set; }
     [field: SerializeField] public TMP_Text Killed { get; private set; }
     
+    [field: SerializeField] public SpellInfoField SpellInfoField { get; private set; }
+    
     void Start()
     {
         _instance = this;

@@ -61,9 +61,15 @@ public class Player : MonoBehaviourPunCallbacks
             LocalPlayerInstance = gameObject;
             PlayerInitialized?.Invoke(this);
 
-            var loadedUserInfo = await SaveDataManager.RetrieveSpecificData("user_info");
+            var loadedUserName = await SaveDataManager.RetrieveSpecificData("Name");
 
-            var userInfo = JsonConvert.DeserializeObject<UserInfo>(loadedUserInfo);
+            var userInfo = new UserInfo(loadedUserName, new Levels(new List<Level>()
+            {
+               new Level(LevelType.MainLevel) 
+            }), new Parameters(new List<Parameter>()
+            {
+                new Parameter(ParameterType.Health, 100)
+            }));
             
             UserInfo = userInfo;
             GetNickName();

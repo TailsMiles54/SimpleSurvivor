@@ -48,12 +48,24 @@ namespace Character
             
                 UpgradeSpellPoints.Add(randomSpells);
             });
-            SaveUserData();
         }
-    
-        public void SaveUserData()
+
+        public void SpellUp(SpellTypes? spellType)
         {
-            SaveDataManager.SaveUserData(this);
+            if (UserSpellsData.Any(x => x.SpellTypes == spellType))
+            {
+                UserSpellsData.First(x => spellType == x.SpellTypes).CurrentLevel++;
+            }
+            else
+            {
+                UserSpellsData.Add(new SpellData()
+                {
+                    SpellTypes = spellType,
+                    CurrentLevel = 1
+                });
+            }
+            
+            UIController.Instance.SpellInfoField.ShowSpells(UserSpellsData);
         }
     }
 

@@ -69,14 +69,7 @@ public class AuthController : MonoBehaviour
             _launcher.SetupData(_characterName.text);
             _characterShowedName.text = _characterName.text;
             
-            var userInfo = new UserInfo(_characterName.text, new Levels(new List<Level>()
-            {
-                new Level(LevelType.MainLevel)
-            }), new Parameters(new List<Parameter>()
-            {
-                new Parameter(ParameterType.Health, 100)
-            }));
-            SaveDataManager.SaveUserData(userInfo);
+            SaveDataManager.Save("Name", _characterName.text);
         }
     }
 
@@ -88,19 +81,18 @@ public class AuthController : MonoBehaviour
             _authPanel.SetActive(false);
             _characterAppearance.LoadAppearance();
             
-            var loadedUserInfo = await SaveDataManager.RetrieveSpecificData("user_info");
-            var userInfo = loadedUserInfo != null ? JsonConvert.DeserializeObject<UserInfo>(loadedUserInfo) : null;
+            var loadedUserName = await SaveDataManager.RetrieveSpecificData("Name");
             
-            if (string.IsNullOrEmpty(userInfo?.Name))
+            if (string.IsNullOrEmpty(loadedUserName))
             {
                 _lobbyPanel.SetActive(false);
                 _characterPanel.SetActive(true);
             }
             else
             {
-                _characterShowedName.text = userInfo.Name;
+                _characterShowedName.text = loadedUserName;
                 _lobbyPanel.SetActive(true);
-                _launcher.SetupData(userInfo.Name);
+                _launcher.SetupData(loadedUserName);
                 _characterPanel.SetActive(false);
             }
         };

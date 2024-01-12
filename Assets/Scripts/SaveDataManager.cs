@@ -72,10 +72,4 @@ public static class SaveDataManager
 
         return default;
     }
-
-    public static void SaveUserData(UserInfo userInfo)
-    {
-        var result = JsonConvert.SerializeObject(userInfo);
-        Save("user_info", result);
-    }
 }
