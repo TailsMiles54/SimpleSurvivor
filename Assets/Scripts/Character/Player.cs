@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Character;
 using DefaultNamespace;
 using Newtonsoft.Json;
 using Photon.Pun;
@@ -90,11 +91,7 @@ public class Player : MonoBehaviourPunCallbacks
         var mainLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel);
         UIController.Instance.MainLevel.maxValue = mainLevel.ExpToNext;
         UIController.Instance.MainLevel.value = mainLevel.CurrentExp;
-        UIController.Instance.LevelText.text = $"Lv: {UserInfo.Level}";
-
-        var jobLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.JobLevel);
-        UIController.Instance.JobLevel.maxValue = mainLevel.ExpToNext;
-        UIController.Instance.JobLevel.value = jobLevel.CurrentExp;
+        UIController.Instance.LevelText.text = $"Lv: {UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel).CurrentLevel}";
     }
     
     void OnDrawGizmos()

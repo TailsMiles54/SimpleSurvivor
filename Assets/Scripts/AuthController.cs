@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Character;
 using Newtonsoft.Json;
 using TMPro;
 using Unity.Services.Authentication;
@@ -68,13 +69,9 @@ public class AuthController : MonoBehaviour
             _launcher.SetupData(_characterName.text);
             _characterShowedName.text = _characterName.text;
             
-            var userInfo = new UserInfo(new Wallet()
+            var userInfo = new UserInfo(_characterName.text, new Levels(new List<Level>()
             {
-                    
-            }, _characterName.text, new Levels(new List<Level>()
-            {
-                new Level(LevelType.MainLevel),
-                new Level(LevelType.JobLevel)
+                new Level(LevelType.MainLevel)
             }), new Parameters(new List<Parameter>()
             {
                 new Parameter(ParameterType.Health, 100)

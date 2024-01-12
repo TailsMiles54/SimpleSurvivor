@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Character;
 using Newtonsoft.Json;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
