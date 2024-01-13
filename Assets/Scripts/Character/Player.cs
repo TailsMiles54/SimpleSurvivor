@@ -29,6 +29,7 @@ public class Player : MonoBehaviourPunCallbacks
     [SerializeField] private Slider _healthSlider;
 
     [SerializeField] private ParticleSystem _smokePuff; 
+    [field: SerializeField] public SpellsController SpellsController { get; private set; } 
 
     public UserInfo UserInfo;
     

@@ -42,6 +42,7 @@ public class LevelRewardPopup : Popup<LevelRewardPopupSettings>
         if (_selectedSpellType != null)
         {
             _player.UserInfo.SpellUp(_selectedSpellType);
+            _player.SpellsController.SpellUpgrade(_selectedSpellType);
             PopupController.Instance.HidePopup();
         }
     }

@@ -14,6 +14,7 @@ namespace Character
             Name = name;
             Level = level;
             Parameters = parameters;
+            LvlUpAction();
         }
     
         public string Name { get; private set; }
@@ -26,28 +27,30 @@ namespace Character
         public void AddMainExp(int exp)
         {
             var mainLevel = Level.LevelList.First(x => x.LevelType == LevelType.MainLevel);
-            mainLevel.AddExp(exp, () =>
+            mainLevel.AddExp(exp, LvlUpAction);
+        }
+
+        public void LvlUpAction()
+        {
+            var newSpells = Enum.GetValues(typeof(SpellTypes)).Cast<SpellTypes>().ToList();
+
+            var spellSettings = SettingsProvider.Get<SpellsSettings>();
+
+            var notMaxLevelSpells = new List<SpellTypes>();
+
+            foreach (var spellType in newSpells)
             {
-                var newSpells = Enum.GetValues(typeof(SpellTypes)).Cast<SpellTypes>().ToList();
-
-                var spellSettings = SettingsProvider.Get<SpellsSettings>();
-
-                var notMaxLevelSpells = new List<SpellTypes>();
-
-                foreach (var spellType in newSpells)
+                var maxLevel = spellSettings.GetSpell(spellType).MaxLevel;
+                var currentLevel = UserSpellsData.FirstOrDefault(y => y.SpellTypes == spellType)?.CurrentLevel ?? 0;
+                if (maxLevel > currentLevel)
                 {
-                    var maxLevel = spellSettings.GetSpell(spellType).MaxLevel;
-                    var currentLevel = UserSpellsData.FirstOrDefault(y => y.SpellTypes == spellType)?.CurrentLevel ?? 0;
-                    if (maxLevel > currentLevel)
-                    {
-                        notMaxLevelSpells.Add(spellType);
-                    }
+                    notMaxLevelSpells.Add(spellType);
                 }
+            }
 
-                var randomSpells = notMaxLevelSpells.GetRandomElements(Math.Clamp(notMaxLevelSpells.Count, 1, 3));
+            var randomSpells = notMaxLevelSpells.GetRandomElements(Math.Clamp(notMaxLevelSpells.Count, 1, 3));
             
-                UpgradeSpellPoints.Add(randomSpells);
-            });
+            UpgradeSpellPoints.Add(randomSpells);
         }
 
         public void SpellUp(SpellTypes? spellType)

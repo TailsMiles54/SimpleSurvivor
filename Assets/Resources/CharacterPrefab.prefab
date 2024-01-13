@@ -5214,6 +5214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1762816381577266421}
+  - component: {fileID: 2054473039386944454}
   m_Layer: 6
   m_Name: SpellsParent
   m_TagString: Untagged
@@ -5243,6 +5244,27 @@ Transform:
   - {fileID: 7584963652539486377}
   m_Father: {fileID: 7224149203388998861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2054473039386944454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533141501816937878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052e7c3adc79b7b4c93e57c27b9a2a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: -237857599313554457}
+  _spells:
+  - {fileID: 4712043522181216192}
+  - {fileID: 7042837941639159397}
+  - {fileID: 7554383421778677931}
+  - {fileID: 7626453630105317951}
+  - {fileID: 8997296449880533576}
+  - {fileID: 4595357815279872032}
+  - {fileID: 1876818259382526317}
 --- !u!1 &7694000570315084372
 GameObject:
   m_ObjectHideFlags: 0
@@ -5904,6 +5926,7 @@ MonoBehaviour:
   _animator: {fileID: 7191100790416280148}
   _healthSlider: {fileID: 9025350736092786762}
   _smokePuff: {fileID: 8352957497639172960}
+  <SpellsController>k__BackingField: {fileID: 2054473039386944454}
   <AvatarCamera>k__BackingField: {fileID: 6907321718465233724}
 --- !u!114 &-2683176174289102616
 MonoBehaviour:

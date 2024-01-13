@@ -709,7 +709,7 @@ MonoBehaviour:
   <LevelText>k__BackingField: {fileID: 260656091271897848}
   <Timer>k__BackingField: {fileID: 8929020997011189678}
   <Killed>k__BackingField: {fileID: 3853525889769965582}
-  <SpellInfoField>k__BackingField: {fileID: 0}
+  <SpellInfoField>k__BackingField: {fileID: 7139428494956569345}
 --- !u!1 &2481551075641590187
 GameObject:
   m_ObjectHideFlags: 0

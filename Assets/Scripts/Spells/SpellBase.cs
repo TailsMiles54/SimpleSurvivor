@@ -9,7 +9,7 @@ public class SpellBase : MonoBehaviour
     [field: SerializeField] public GameObject SpellPrefab { get; private set; }
     [field: SerializeField] public SpellTypes SpellType { get; private set; }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         _level++;
         
