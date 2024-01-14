@@ -4438,7 +4438,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: -237857599313554457}
   _level: 0
-  <SpellPrefab>k__BackingField: {fileID: 0}
+  <SpellPrefab>k__BackingField: {fileID: 76601680942855460, guid: 6958ba6648e93474c82ff384e03d81d3,
+    type: 3}
   <SpellType>k__BackingField: 1
 --- !u!1 &6578022476308063197
 GameObject:

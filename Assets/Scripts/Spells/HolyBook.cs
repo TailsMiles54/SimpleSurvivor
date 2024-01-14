@@ -1,38 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
-using Settings;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class HolyBook : SpellBase
+namespace Spells
 {
-    private List<GameObject> _booksObject;
-    public override void Activate()
+    public class HolyBook : SpellBase
     {
-        StartCoroutine(Attack());
-    }
-
-    public IEnumerator Attack()
-    {
-        while (Active)
+        private List<GameObject> _booksObject;
+        public override void Activate()
         {
-            var spellSettings = SettingsProvider.Get<SpellsSettings>().GetSpell(SpellType).SpellLevelSettings[GetLevel];
-            for (int i = 0; i < spellSettings.Amount; i++)
-            {
-                var book = Instantiate(SpellPrefab, transform);
-                _booksObject.Add(book);
-            }
-            yield return new WaitForSeconds(GetLevelSetting.Duration);
-            foreach (var bookObject in _booksObject)
-            {
-                Destroy(bookObject);
-            }
-            yield return new WaitForSeconds(GetLevelSetting.Cooldown);
+            SetActive(true);
+            StartCoroutine(Attack());
         }
-    }
 
-    public void FixedUpdate()
-    {
-        transform.rotation = new Quaternion(0, 10, 0, 0);
+        public IEnumerator Attack()
+        {
+            while (Active)
+            {
+                for (int i = 0; i < GetLevelSetting.Amount; i++)
+                {
+                    var book = Instantiate(SpellPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+                    _booksObject.Add(book);
+                }
+                yield return new WaitForSeconds(GetLevelSetting.Duration);
+                foreach (var bookObject in _booksObject)
+                {
+                    Destroy(bookObject);
+                }
+                yield return new WaitForSeconds(GetLevelSetting.Cooldown);
+            }
+        }
+    
+        private Vector3 GetRandomSpawnPosition()
+        {
+            Vector3 vec = Random.insideUnitCircle.normalized * GetLevelSetting.Radius;
+        
+            var pos = new Vector3(vec.x, vec.z, vec.y);
+        
+            return transform.position + pos;
+        }
+
+        public void FixedUpdate()
+        {
+            transform.rotation = new Quaternion(0, 10, 0, 0);
+        }
     }
 }

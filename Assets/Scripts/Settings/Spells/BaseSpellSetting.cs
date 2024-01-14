@@ -21,6 +21,7 @@ namespace Settings.Spells
         public float Speed;
         public float Duration;
         public float Cooldown;
+        public float Radius;
         public int PoolLimit;
         public int Amount;
         public int Pierce; //Колво врагов

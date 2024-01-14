@@ -43,6 +43,8 @@ public class LevelRewardPopup : Popup<LevelRewardPopupSettings>
         {
             _player.UserInfo.SpellUp(_selectedSpellType);
             _player.SpellsController.SpellUpgrade(_selectedSpellType);
+            _player.UserInfo.UpgradeSpellPoints.Remove(_player.UserInfo.UpgradeSpellPoints.First());
+            _player.UpdateLevelSlider();
             PopupController.Instance.HidePopup();
         }
     }

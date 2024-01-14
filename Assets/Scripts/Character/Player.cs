@@ -93,12 +93,12 @@ public class Player : MonoBehaviourPunCallbacks
         _animator = GetComponent<Animator>();
     }
 
-    private void UpdateLevelSlider()
+    public void UpdateLevelSlider()
     {
         var mainLevel = UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel);
         UIController.Instance.MainLevel.maxValue = mainLevel.ExpToNext;
         UIController.Instance.MainLevel.value = mainLevel.CurrentExp;
-        UIController.Instance.LevelText.text = $"Lv: {UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel).CurrentLevel}";
+        UIController.Instance.LevelText.text = $"Lv: {UserInfo.Level.LevelList.First(x => x.LevelType == LevelType.MainLevel).CurrentLevel} ({UserInfo.UpgradeSpellPoints.Count})";
     }
     
     void OnDrawGizmos()
