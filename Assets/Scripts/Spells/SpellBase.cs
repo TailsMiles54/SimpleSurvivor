@@ -1,4 +1,7 @@
+using System;
 using Enums;
+using Settings;
+using Settings.Spells;
 using UnityEngine;
 
 public class SpellBase : MonoBehaviour
@@ -8,6 +11,14 @@ public class SpellBase : MonoBehaviour
     public bool Active { get; private set; }
     [field: SerializeField] public GameObject SpellPrefab { get; private set; }
     [field: SerializeField] public SpellTypes SpellType { get; private set; }
+    public BaseSpellSetting SpellSettings { get; private set; }
+
+    public SpellLevelSetting GetLevelSetting => SpellSettings.SpellLevelSettings[_level];
+
+    public void Awake()
+    {
+        SpellSettings = SettingsProvider.Get<SpellsSettings>().GetSpell(SpellType);
+    }
 
     public void LevelUp()
     {

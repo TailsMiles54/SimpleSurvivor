@@ -5,23 +5,28 @@ public class SpellColider : MonoBehaviour
 {
     private Player _parent;
     private float _damage;
+    
+    private int _pierce; //Колво врагов
 
-    public void Setup(Player userId, float damage)
+    public void Setup(Player userId, float damage, int pierce)
     {
         _parent = userId;
         _damage = damage;
+        _pierce = pierce;
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out BaseEnemy baseEnemy))
         {
-            Debug.Log("damage");
-            if (baseEnemy.EnemyData.TakeDamage(10))
+            _pierce--;
+            if (baseEnemy.EnemyData.TakeDamage(_damage))
             {
                 _parent.AddXp(10);
             }
-            Destroy(gameObject);
+            
+            if(_pierce <= 0)
+                Destroy(gameObject);
         }
     }
 }
