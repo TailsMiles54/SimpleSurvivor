@@ -32,26 +32,30 @@ public class EnemySpawnSystem : MonoBehaviourPunCallbacks
             {
                 UIController.Instance.Timer.text = $"Волна: {waves.IndexOf(wave)+1}";
                 var players = PhotonNetwork.FindGameObjectsWithComponent(typeof(Player)).Select(x => x.GetComponent<Player>()).ToList();
-                foreach (var player in players)
+                foreach (var enemySpawnSetting in wave.EnemiesSpawnSettings)
                 {
-                    foreach (var enemySpawnSetting in wave.EnemiesSpawnSettings)
+                    for (int i = 0; i != enemySpawnSetting.EnemyCount; i++)
                     {
-                        for (int i = 0; i != enemySpawnSetting.EnemyCount; i++)
+                        foreach (var player in players)
                         {
                             var spawnPosition = GetRandomSpawnPosition(player, players);
-                        
-                            if(spawnPosition != new Vector3())
+
+                            if (spawnPosition != new Vector3())
                             {
                                 var enemySetting = enemiesSettings.GetEnemyByType(enemySpawnSetting.EnemyTypes);
-                                
-                                var enemy = PhotonNetwork.Instantiate(enemySetting.EnemyPrefab.name, spawnPosition, Quaternion.identity);
+
+                                var enemy = PhotonNetwork.Instantiate(enemySetting.EnemyPrefab.name, spawnPosition,
+                                    Quaternion.identity);
                                 var navMeshAgent = enemy.GetComponent<TestEnemy>();
                                 var baseEnemy = enemy.GetComponent<BaseEnemy>();
-                                baseEnemy.EnemyData = new EnemyData(enemySpawnSetting.EnemyTypes, enemySetting.Speed, enemySetting.Damage, enemySetting.Health, baseEnemy);
+                                baseEnemy.EnemyData = new EnemyData(enemySpawnSetting.EnemyTypes,
+                                    enemySetting.Speed,
+                                    enemySetting.Damage, enemySetting.Health, baseEnemy);
+                                Debug.Log(player.UserInfo.Name);
                                 navMeshAgent.SetTarget(player);
-                                yield return new WaitForSeconds(wave.EnemySpawnDelay);
                             }
                         }
+                        yield return new WaitForSeconds(wave.EnemySpawnDelay);
                     }
                 }
                 StartCoroutine(StartTimer("До начала волны: {0}", Mathf.RoundToInt(wave.WaitToNextWave)));

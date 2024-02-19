@@ -1430,6 +1430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyData:
     <EnemyType>k__BackingField: 4
+    Parent: {fileID: 0}
 --- !u!195 &6412146349416843154
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1487,6 +1488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2449f1dfba4a4c445bcd70f9647fb1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _navMeshAgent: {fileID: 6412146349416843154}
+  _animator: {fileID: 95661104805808786}
 --- !u!114 &2240902359308026273
 MonoBehaviour:
   m_ObjectHideFlags: 0

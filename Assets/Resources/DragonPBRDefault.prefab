@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00825f656664499a97639c177d31022c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyData:
+    <EnemyType>k__BackingField: 0
+    Parent: {fileID: 0}
 --- !u!195 &-6963718505439202178
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -162,6 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2449f1dfba4a4c445bcd70f9647fb1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _navMeshAgent: {fileID: -6963718505439202178}
+  _animator: {fileID: 5611543388560993443}
 --- !u!114 &-7198985998583999513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +186,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6112225911771948362}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
