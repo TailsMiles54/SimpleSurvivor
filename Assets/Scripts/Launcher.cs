@@ -4,11 +4,14 @@ using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
     public static Action ActionBeforeMasterConnect;
     public static Action ActionBeforeMasterLeave;
+
+    [SerializeField] private Button _joinButton;
     
     public void SetupData(string nickname)
     {
@@ -82,6 +85,8 @@ public class Launcher : MonoBehaviourPunCallbacks
             ActionBeforeMasterConnect.Invoke();
             ActionBeforeMasterConnect = null;
         }
+
+        _joinButton.interactable = true;
     }
 
     public void Log(string message)
