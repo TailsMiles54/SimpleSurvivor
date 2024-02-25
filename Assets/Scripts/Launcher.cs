@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
-using Newtonsoft.Json;
 using Photon.Pun;
 using Photon.Realtime;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Launcher : MonoBehaviourPunCallbacks
@@ -32,7 +30,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
-    [Button]
     public static void JoinOrCreateRoom(string mapName)
     {
         Dictionary<string, string> roomParams = new Dictionary<string, string>()

@@ -105,8 +105,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ReppleDensity: 20
-    - _RippleSlimness: 5
+    - _ReppleDensity: 8
+    - _RippleSlimness: 7
     - _RippleSpeed: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Settings;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +20,6 @@ public class LoadingScreen : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    [Button]
     public void DontDestroy()
     {
         DontDestroyOnLoad(_canvas);

@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Settings
 {
     [CreateAssetMenu(fileName = "SettingsProvider", menuName = "SimpleSurvival/SettingsProvider", order = 1)]
-    public class SettingsProvider : SerializedScriptableObject
+    public class SettingsProvider : ScriptableObject
     {
         private static string _containerName = "SettingsProvider";
         private static Dictionary<Type, ScriptableObject> _settings;

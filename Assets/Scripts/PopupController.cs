@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Settings;
-using Sirenix.Utilities;
 using UnityEngine;
 
 public class PopupController : MonoBehaviour

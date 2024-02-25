@@ -1,14 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Character;
 using DefaultNamespace;
-using Newtonsoft.Json;
 using Photon.Pun;
 using Settings;
-using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using SettingsProvider = Settings.SettingsProvider;
@@ -261,7 +257,6 @@ public class Player : MonoBehaviourPunCallbacks
         _smokePuff.Play();
     }
     
-    [Button("AttackCombo"), HorizontalGroup("Attacks")]
     private void AttackCombo()
     {
         if(!photonView.IsMine)
@@ -271,7 +266,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("AttackCombo");
     }
     
-    [Button("Die"), HorizontalGroup("Actions")]
     private void Die()
     {
         if(!photonView.IsMine)
@@ -282,7 +276,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetBool("Dead", _dead);
     }
     
-    [Button("GetUp"), HorizontalGroup("Actions")]
     private void GetUp()
     {
         if(!photonView.IsMine)
@@ -293,7 +286,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetBool("Dead", _dead);
     }
 
-    [Button("Attack1"), HorizontalGroup("Attacks")]
     private void Attack1()
     {
         if(!photonView.IsMine)
@@ -301,7 +293,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Attack1Trigger");
     }
 
-    [Button("Attack2"), HorizontalGroup("Attacks")]
     private void Attack2()
     {
         if(!photonView.IsMine)
@@ -309,7 +300,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Attack2Trigger");
     }
 
-    [Button("Attack3"), HorizontalGroup("Attacks")]
     private void Attack3()
     {
         if(!photonView.IsMine)
@@ -317,7 +307,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Attack3Trigger");
     }
 
-    [Button("Attack4"), HorizontalGroup("Attacks")]
     private void Attack4()
     {
         if(!photonView.IsMine)
@@ -325,7 +314,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Attack4Trigger");
     }
 
-    [Button("Dance"), HorizontalGroup("Actions2")]
     private void Dance()
     {
         if(!photonView.IsMine)
@@ -333,7 +321,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Dance");
     }
 
-    [Button("LevelUp"), HorizontalGroup("Actions2")]
     private void LevelUp()
     {
         if(!photonView.IsMine)
@@ -341,7 +328,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("LevelUp");
     }
 
-    [Button("Challenging"), HorizontalGroup("Actions2")]
     private void Challenging()
     {
         if(!photonView.IsMine)
@@ -349,7 +335,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Challenging");
     }
 
-    [Button("Dizzy"), HorizontalGroup("Actions2")]
     private void Dizzy()
     {
         if(!photonView.IsMine)
@@ -357,7 +342,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Dizzy");
     }
 
-    [Button("Victory"), HorizontalGroup("Actions2")]
     private void Victory()
     {
         if(!photonView.IsMine)
@@ -365,7 +349,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Victory");
     }
 
-    [Button("Search"), HorizontalGroup("Actions2")]
     private void Search()
     {
         if(!photonView.IsMine)
@@ -373,7 +356,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("Search");
     }
 
-    [Button("GetHit1"), HorizontalGroup("Hits")]
     private void GetHit1()
     {
         if(!photonView.IsMine)
@@ -381,7 +363,6 @@ public class Player : MonoBehaviourPunCallbacks
         _animator.SetTrigger("GetHit1");
     }
 
-    [Button("GetHit2"), HorizontalGroup("Hits")]
     private void GetHit2()
     {
         if(!photonView.IsMine)
